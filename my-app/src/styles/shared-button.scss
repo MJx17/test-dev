@@ -1,0 +1,88 @@
+/* Shared button style */
+.shared-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Spacing between icon and text */
+    margin: 10px;
+    cursor: pointer; /* Show pointer cursor */
+    color: #fff; /* Default text color */
+    text-decoration: none;
+}
+
+.shared-button:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Button types */
+.shared-button.edit {
+    background-color: #81c784; /* Slightly darker pastel green */
+}
+
+.shared-button.edit:hover {
+    background-color: #a5d6a7; /* Pastel Green */
+}
+
+.shared-button.delete {
+    background-color: #ffab91; /* Slightly darker pastel red */
+}
+
+.shared-button.delete:hover {
+    background-color: #ffccbc; /* Pastel Red */
+}
+
+.shared-button.hard-delete {
+    background-color: #ff5252; /* Slightly darker pastel dark red */
+}
+
+.shared-button.hard-delete:hover {
+    background-color: #ff8a80; /* Pastel Dark Red */
+}
+
+.shared-button.restore {
+    background-color: #4fa3d1; /* Slightly darker pastel blue */
+}
+
+.shared-button.restore:hover {
+    background-color: #81d4fa; /* Pastel Blue */
+}
+
+/* Save button style (pastel green for saving) */
+.shared-button.save {
+    background-color: #81c784; /* Slightly darker pastel green */
+}
+
+.shared-button.save:hover {
+    background-color: #b2fab4; /* Pastel Green */
+}
+
+/* Create button style (pastel blue for creating) */
+.shared-button.create {
+    background-color: #81d4fa; /* Slightly darker pastel blue */
+}
+
+.shared-button.create:hover {
+    background-color: #b3e5fc; /* Pastel Blue */
+}
+
+/* Button container for alignment */
+.shared-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Optional: Add styling for icons inside buttons */
+.shared-button .icon {
+    font-size: 12px;
+}

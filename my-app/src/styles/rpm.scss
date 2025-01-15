@@ -1,0 +1,79 @@
+/* Styles for the role select component */
+.role-select-container {
+  display: flex;
+  align-items: center; /* Vertically center the label and select */
+  justify-content: center; /* Horizontally center the label and select */
+  gap: 1rem; /* Adds space between the label and the select input */
+  padding: 10px;
+  border-radius: 8px;
+
+  /* Optional: Add a background or border to emphasize the container */
+  // background-color: #f9f9f9;
+  // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  .role-select-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0; /* Remove margin so it aligns perfectly with the select */
+  }
+
+  .role-select {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    /* Hover and focus effects */
+    &:hover {
+      border-color: #888;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+    }
+  }
+}
+
+
+  
+
+  
+  /* Role Form and Permission Form Layout */
+  .forms-container {
+    display: flex;
+    justify-content: space-between;
+   
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Ensure they wrap in smaller screens */
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  /* Form container */
+  .form-container {
+    padding-top: 10px !important;
+    flex: 1;
+     /* Add padding inside the form containers */
+  }
+  
+  @media (max-width: 768px) {
+    .forms-container {
+      flex-direction: column; /* Stack the forms vertically on small screens */
+      align-items: center; /* Center the forms */
+    }
+  
+    .form-container {
+      width: 100%; /* Ensure the forms take the full width on smaller screens */
+      padding: 0; /* Remove padding on smaller screens */
+    }
+  }
+  

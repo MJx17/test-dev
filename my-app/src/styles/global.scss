@@ -1,0 +1,78 @@
+// Load the desired fonts (e.g., Roboto for body text and Montserrat for headings)
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+// Global Styles (e.g., _global.scss)
+
+
+// Global styles for headings
+h2 {
+  font-size: 1.5rem; // Default font size for h2
+  margin: 0 0 1rem;
+  font-family: 'Montserrat', sans-serif; // Font for headings
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem; // Smaller font size for smaller screens
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem; // Even smaller font size for very small screens
+  }
+}
+
+// Global styles for paragraphs
+p {
+  font-size: 1rem; // Default font size for p
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  font-family: 'Roboto', sans-serif; // Font for body text
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; // Smaller font size for smaller screens
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem; // Even smaller font size for very small screens
+  }
+}
+
+// Global styles for anchor tags
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-family: 'Roboto', sans-serif; // Use body font for anchor tags
+
+  &:hover {
+    color: #0d7bf1;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; // Adjust font size for smaller screens
+    color: #050284;
+  }
+
+  @media (max-width: 480px) {
+    color: #050284;
+    font-size: 0.8rem; // Further adjust font size for very small screens
+  }
+}
+
+// Global styles for lists
+ul, li {
+  list-style: none; // Remove default list style
+  margin: 0;
+  padding: 0;
+
+  li {
+    font-size: 1rem; // Default font size for list items
+    font-family: 'Roboto', sans-serif; // Use body font for list items
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem; // Smaller font size for smaller screens
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.8rem; // Even smaller font size for very small screens
+    }
+  }
+}

@@ -1,0 +1,28 @@
+
+// _mixins.scss
+@mixin responsive-font-size($size-mobile, $size-desktop) {
+    font-size: $size-mobile;
+  
+    @media (min-width: 769px) {
+      font-size: $size-desktop;
+    }
+  }
+  
+  @mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin button-style($color, $hover-color) {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $color;
+    transition: color 0.3s;
+  
+    &:hover {
+      color: $hover-color;
+    }
+  }
+  

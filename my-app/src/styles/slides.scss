@@ -1,0 +1,119 @@
+// ResponsiveTable.scss
+.slides-table-container {
+  display: block;
+
+  .slides-table-head {
+    background-color: #242424;
+    color: white;
+
+    .slides-table-cell {
+      color: white;
+    }
+  }
+
+  .slides-table-row {
+    &.deleted {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.slides-table-card-container {
+  display: none; // Hidden by default for desktop
+  gap: 16px;
+
+  .slides-table-card {
+    background-color: white;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    &.deleted {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      max-height: 200px;
+      height: auto;
+      margin-bottom: 8px;
+    }
+
+    .slides-table-edit-button {
+      padding: 8px 16px;
+      border: 1px solid #1976d2;
+      color: #1976d2;
+      background-color: transparent;
+      text-transform: none;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #e3f2fd;
+      }
+    }
+  }
+}
+
+// Responsive breakpoints
+@media (max-width: 820px) {
+  .slides-table-container {
+    display: none; // Hide the table for mobile
+  }
+
+  .slides-table-card-container {
+    display: flex; // Show cards for mobile
+    flex-direction: column;
+    
+  }
+ 
+}
+@media (max-width: 780px) {
+  .carousel-title,
+  .carousel-description {
+    max-width: 100%; /* Ensure typography takes full width of its container */
+  }
+}
+
+.carousel-menu-buttons {
+  /* Default padding for larger screens or no padding */
+}
+
+/* Apply 10px padding only for mobile screens */
+@media (max-width: 820px) {
+  .carousel-menu-buttons {
+    padding: 10px !important; /* Padding for mobile only */
+  }
+}
+
+.checkbox-div {
+  display: flex;
+  gap: 10px; /* Add space between buttons */
+
+  .select-all-button, .select-all-deleted-button {
+    width: 120px;
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+  }
+
+  .select-all-button {
+    background-color: #1976d2; /* Blue background */
+  }
+
+  .select-all-deleted-button {
+    background-color: red; /* Red background */
+  }
+}
