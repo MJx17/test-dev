@@ -3,16 +3,11 @@ import LoginForm from './pages/Login';
 import Home from './pages/Home';
 import Unauthorized from './components/unauthorized';  // The Unauthorized page component
 import { ProtectedRoute } from './auth/protectedRoutes';
-
-
-import Rates from './pages/Rates';
-import Slides from '../dupli/test/Slides';
+// import Rates from './pages/Rates';
 import Dashboard from './pages/AdminPages/Dashboard'
 import Branch from './pages/Branch';
-import Test from '../dupli/test/test'
 import SlideList from './pages/SlideList'
 import SlidesListAdmin from './pages/AdminPages/SlideListAdmin'
-import RolesComponent from './pages/AdminPages/Roles';
 import Permissions from './pages/AdminPages/Permissions'
 import RolePermissionManager from './pages/AdminPages/RolePermissionManagement';
 import ResourceList from './pages/AdminPages/ResourceForm';
@@ -23,17 +18,16 @@ export const routes = [
   { path: '/login', element: <LoginForm /> },    // Public route, no navbar needed
   
   // Public routes, will use public layout with navbar
-  { path: '/', element: <Home />, useLayout: 'public' }, 
-  { path: '/upload', element: <Test />, useLayout: 'public' }, 
+  { path: '/', element: <Home />, useLayout: 'public' },  
   { path: '/home', element: <Home />, useLayout: 'public' },
   { path: '/branch', element: <Branch/>, useLayout: 'public' },
   
-  // Protected routes, will use auth layout with navbar + sidebar
-  {
-    path: '/rates',
-    element: <ProtectedRoute element={<Rates />} requiredRole={['superadmin', 'admin']} />,
-    useLayout: 'auth', // Protected route with navbar + sidebar
-  },
+  // // Protected routes, will use auth layout with navbar + sidebar
+  // {
+  //   path: '/rates',
+  //   element: <ProtectedRoute element={<Rates />} requiredRole={['superadmin', 'admin']} />,
+  //   useLayout: 'auth', // Protected route with navbar + sidebar
+  // },
   {
     path: '/slidelist-admin',
     element: <ProtectedRoute element={<SlidesListAdmin />} requiredRole={['superadmin', 'admin']} />,

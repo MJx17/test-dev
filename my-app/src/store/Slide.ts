@@ -12,7 +12,7 @@ import {
   softDeleteAllCarouselsService,
   hardDeleteAllCarouselsService
 } from '../services/slideService'; // Import API services
-import {Carousel} from '../Servicestypes';
+import {Carousel} from '../ServicesTypes';
 
 interface CarouselState {
   title: string;

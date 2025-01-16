@@ -18,7 +18,7 @@ const Loading: React.FC = () => {
 
   return (
     <div style={containerStyle}>
-      <PacmanLoader color="#36d7b7" size={150}/>
+      <PacmanLoader color="#FFFF00" size={150}/>
     </div>
   );
 };

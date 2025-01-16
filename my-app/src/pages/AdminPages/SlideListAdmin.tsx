@@ -1,4 +1,5 @@
-import React, { useState, useEffect, } from 'react';
+import { useState, useEffect, } from 'react';
+import React from 'react';
 import useCarouselStore from '../../store/Slide';
 import {
   Table,
@@ -14,10 +15,8 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  IconButton,
   Box,
   Checkbox,
-  Grid,
   Typography,
   Select,
   FormControl,
@@ -25,15 +24,18 @@ import {
   InputLabel,
   Card,
   CardContent,
-  SelectChangeEvent 
+  SelectChangeEvent,
+  // IconButton,
+  // Grid,
 
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import SlideForm from '../../pages/SlidesForm';
 import Pagination from '../../utils/Pagination';
-import SearchBox from '../../utils/search';
-import SortBox from '../../utils/Filter';
+// import SearchBox from '../../utils/search';
+// import SortBox from '../../utils/Filter';
 import '../../styles/slides.scss'
+
 
  
 
@@ -73,7 +75,6 @@ const CarouselDisplay = () => {
   //Filter
   const [searchTerm, setSearchTerm] = useState<string>(''); // Search term
 
-    const [loading, setLoading] = useState(false);
 
 
     const [sortBy, setSortBy] = useState<'title-asc' | 'title-desc' | 'date-asc' | 'date-desc'>('title-asc');
@@ -160,7 +161,7 @@ const handleSortChange = (e: SelectChangeEvent<string>) => {
   
 
 
-  const buttonhandleSelectAll = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const buttonhandleSelectAll = (_event: React.MouseEvent<HTMLButtonElement>) => {
     // Logic for selecting or deselecting all items
     if (selectedIds.length === carousels.length && carousels.length > 0) {
       // Deselect all

@@ -6,9 +6,9 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet.fullscreen';
 import L from 'leaflet';
 import 'leaflet.markercluster';
-import MarkerClusterGroup from 'react-leaflet-cluster';
+// import MarkerClusterGroup from 'react-leaflet-cluster';
 import MapFilter from '../utils/mapFilter';
-import { BuildingMarkerIcon, CreditCardMarkerIcon, LibraryMarkerIcon, EyeIcon, LocateIcon } from '../utils/marker';
+import { BuildingMarkerIcon, CreditCardMarkerIcon, LibraryMarkerIcon, EyeIcon } from '../utils/marker';
 import '../styles/branch.scss';
 
 // Type declarations
@@ -23,15 +23,6 @@ interface MarkerData {
   location: string;
 }
 
-
-interface MapComponentProps {
-  category: string;
-  setCategory: React.Dispatch<React.SetStateAction<string>>;
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-  location: string;
-  setLocation: React.Dispatch<React.SetStateAction<string>>;
-}
 
 const MapComponent: React.FC = () => {
   const [category, setCategory] = useState<string>('all');
@@ -179,6 +170,14 @@ const MapComponent: React.FC = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           <MapUpdater />
+          <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 900 }}>
+            <button
+              onClick={() => setShowClusters(prev => !prev)}
+              className='eye-button'
+            >
+              <EyeIcon size={20} color="#000" />
+            </button>
+          </div>
         </MapContainer>
       </div>
     </div>

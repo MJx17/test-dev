@@ -9,9 +9,8 @@ import {
   getCarouselsService,
   getAllCarouselsService,
   getSoftDeletedCarouselByIdService,
-  Carousel
 } from '../services/slideService'; // Import API services
-
+import {Carousel} from '../ServicesTypes';
 
 interface CarouselState {
   title: string;

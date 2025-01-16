@@ -1,8 +1,8 @@
-import React from 'react';
+
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import EventIcon from '@mui/icons-material/Event';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+// import EventIcon from '@mui/icons-material/Event';
+// import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import GroupIcon from '@mui/icons-material/Group';
 
 interface AdminSidebarProps {

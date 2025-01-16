@@ -1,7 +1,6 @@
 import React, { forwardRef, MouseEventHandler } from "react";
-import { TextField, Button, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+// import { TextField, Button, IconButton } from "@mui/material";
+// import CloseIcon from "@mui/icons-material/Close";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -27,10 +26,10 @@ interface MegaMenuProps {
   activeDropdown: string | null;
   onMouseEnter: MouseEventHandler<HTMLDivElement>;
   onMouseLeave: MouseEventHandler<HTMLDivElement>;
-  searchQuery: string;
-  onQueryChange: (query: string) => void;
-  onSearch: () => void;
-  onCloseSearch: () => void;
+  // searchQuery: string;
+  // onQueryChange: (query: string) => void;
+  // onSearch: () => void;
+  // onCloseSearch: () => void;
 }
 
 // Define the MegaMenu component and forward refs if needed
@@ -38,10 +37,10 @@ const MegaMenu = forwardRef<HTMLDivElement, MegaMenuProps>(({
   activeDropdown,
   onMouseEnter,
   onMouseLeave,
-  searchQuery,
-  onQueryChange,
-  onSearch,
-  onCloseSearch
+  // searchQuery,
+  // onQueryChange,
+  // onSearch,
+  // onCloseSearch
 }, ref) => (
   <div
     ref={ref}
@@ -87,7 +86,7 @@ const MegaMenu = forwardRef<HTMLDivElement, MegaMenuProps>(({
         </div>
       )}
 
-      {/* Search Section */}
+      {/* Search Section
       {activeDropdown === "search" && (
         <div className="mega-menu-search">
           What do you want to search?
@@ -112,7 +111,7 @@ const MegaMenu = forwardRef<HTMLDivElement, MegaMenuProps>(({
             </IconButton>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   </div>
 ));

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { createRole, getRoles, updateRole, deleteRole, getAllRoles } from '../services/roleService';
+import { createRole, getRoles, updateRole, deleteRole, } from '../services/roleService';
 import { fetchRoles } from '../services/service';
 import { toast } from 'react-toastify';
 import { Role } from '../ServicesTypes';

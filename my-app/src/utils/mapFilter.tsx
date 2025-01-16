@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, MouseEvent } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import { Button, ToggleButton, ToggleButtonGroup, TextField, Autocomplete, Modal, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -6,19 +6,20 @@ import "../styles/branch.scss";
 
 // Define types for the props
 interface Marker {
-  id: string;
+  id: number;
   branchName: string;
   category: string;
-  position: any; // Replace 'any' with the correct type for position
+  position: [number, number];
 }
 
 interface FilterOption {
-  key: string;
+  key: string;  // Change key type to string
   label: string;
-  id: string;
+  id: number;
   category: string;
-  position: any;
+  position: [number, number];
 }
+
 
 interface MapFilterProps {
   category: string;
@@ -48,16 +49,17 @@ const MapFilter: React.FC<MapFilterProps> = ({
   };
 
   const handleCategoryChange = (
-    event: MouseEvent<HTMLElement>, 
+    _event: MouseEvent<HTMLElement>, 
     newCategory: string | null
   ) => {
     if (newCategory !== null) {
       setTempCategory(newCategory);
     }
   };
+  
 
   const handleLocationChange = (
-    event: MouseEvent<HTMLElement>, 
+   _event: MouseEvent<HTMLElement>, 
     newLocation: string | null
   ) => {
     if (newLocation !== null) {
@@ -90,7 +92,7 @@ const MapFilter: React.FC<MapFilterProps> = ({
     const lowercasedInput = inputValue.toLowerCase();
     return markers
       .map((marker) => ({
-        key: marker.id, // Use the unique id as the key
+        key: marker.id.toString(), // Convert id to string for the key
         label: marker.branchName || '', // Assuming address or another field for the label
         id: marker.id,
         category: marker.category,
@@ -98,6 +100,7 @@ const MapFilter: React.FC<MapFilterProps> = ({
       }))
       .filter((option) => option.label.toLowerCase().includes(lowercasedInput));
   };
+  
 
   return (
     <div className="filter-container">
@@ -111,7 +114,7 @@ const MapFilter: React.FC<MapFilterProps> = ({
             }
             return option.label || ''; // If it's a FilterOption, return its label
           }}
-          onInputChange={(event, newInputValue) => {
+          onInputChange={(_event, newInputValue) => {
             if (newInputValue.length >= 3) {
               setSearch(newInputValue);
             } else {

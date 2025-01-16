@@ -14,10 +14,8 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  IconButton,
   Box,
   Checkbox,
-  Grid,
   Typography,
   Select,
   FormControl,
@@ -25,8 +23,9 @@ import {
   InputLabel,
   Card,
   CardContent,
-  SelectChangeEvent 
-
+  SelectChangeEvent,
+  // IconButton, 
+  // Grid,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import SlideForm from '../pages/SlidesForm';
@@ -137,7 +136,7 @@ const handleSortChange = (e: SelectChangeEvent<string>) => {
 
 
 
-  const buttonhandleSelectAll = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const buttonhandleSelectAll = (_event: React.MouseEvent<HTMLButtonElement>) => {
     // Logic for selecting or deselecting all items
     if (selectedIds.length === carousels.length && carousels.length > 0) {
       // Deselect all

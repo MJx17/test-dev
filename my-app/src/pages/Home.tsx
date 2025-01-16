@@ -6,14 +6,20 @@ import { motion } from "framer-motion";
 import ArrowNav from '../utils/icons';
 import Rates from '../utils/rates';
 import "../styles/home.scss";
-import useCarouselStore from '../store/store';  // Import the Zustand store
+import useCarouselStore from '../store/store';
 
-const Slider = () => {
-  const [slideKey, setSlideKey] = useState(0);
+interface Carousel {
+  title: string;
+  description: string;
+  imageUrl: string | null;  // Allow null for imageUrl
+}
+
+const Slider: React.FC = () => {
+  const [slideKey, setSlideKey] = useState<number>(0);
   const { carousels, getCarousels } = useCarouselStore();  // Access the store state and actions
 
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
   // Fetch carousel data when component mounts
   useEffect(() => {
@@ -46,7 +52,7 @@ const Slider = () => {
       >
         <ArrowNav prevRef={prevRef} nextRef={nextRef} />
 
-        {carousels.map((carousel, index) => (
+        {carousels.map((carousel: Carousel, index: number) => (
           <SwiperSlide key={index}>
             <div className="slide-content">
               <div className="text-content">
@@ -56,7 +62,7 @@ const Slider = () => {
               <div className="image-container">
                 <motion.img
                   key={`${slideKey}-${index}`}
-                  src={carousel.imageUrl as string}
+                  src={carousel.imageUrl || '/default-image.jpg'}  // Provide a fallback if imageUrl is null
                   alt={carousel.title}
                   className={`slide-image-${index}`}
                   initial={{ scale: 0.8 }}

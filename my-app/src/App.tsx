@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import routes from './RouteConfig';
 import PublicLayout from './layout/publicLayout';

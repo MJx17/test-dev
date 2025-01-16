@@ -15,7 +15,7 @@ const ReusablePagination: React.FC<ReusablePaginationProps> = ({
   onPageChange,
   itemsPerPage = 5,
 }) => {
-  const handlePageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, newPage: number) => {
     onPageChange(newPage);
   };
 

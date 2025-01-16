@@ -1,4 +1,8 @@
-const pinWithIconSvg = (iconSvg, pinColor, iconColor) => `
+
+import L from 'leaflet';                    
+
+
+const pinWithIconSvg = (iconSvg: string, pinColor: string, iconColor: string): string => `
 <svg width="40" height="60" viewBox="0 0 50 70" xmlns="http://www.w3.org/2000/svg">
   <!-- Circular Part (Pin Head) -->
   <circle cx="25" cy="25" r="25" fill="${pinColor}" />
@@ -57,10 +61,7 @@ export const LibraryMarkerIcon = L.divIcon({
 
 
 
-
-
-
-export const FullscreenIcon = ({ onClick }) => (
+export const FullscreenIcon = ({ onClick }: { onClick?: () => void }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -78,20 +79,7 @@ export const FullscreenIcon = ({ onClick }) => (
   </svg>
 );
 
-
-export const redIcon = new L.Icon({
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-  shadowSize: [41, 41]
-});
-
-
-// EyeIcon.js
-// EyeIcon.js
-export const EyeIcon = ({ size = 36, color = 'currentColor' }) => (
+export const EyeIcon = ({ size = 36, color = 'currentColor' }: { size?: number, color?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill={color}
@@ -107,37 +95,4 @@ export const EyeIcon = ({ size = 36, color = 'currentColor' }) => (
   </svg>
 );
 
-export const DirectionsIcon = ({ size = 16,  color = '#000' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" 
-  fill="none" 
-  viewBox="0 0 24 24" 
-  strokeWidth="1.5" 
-  stroke="currentColor" 
-  className="size-6">
-  <path strokeLinecap="round" 
-  strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
-</svg>
 
-);
-
-
-export const LocateIcon = ({ size = 16,  color = '#000' }) => (
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-    <path strokeLinecap="round" 
-     strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-    <path strokeLinecap="round" 
-    strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-</svg>
-
-);
-export const UserIcon = ({ size = 16,  color = '#000' }) => (
-<svg xmlns="http://www.w3.org/2000/svg" 
-     fill="none" viewBox="0 0 24 24"
-     strokeWidth="1.5" 
-     stroke="currentColor" 
-     className="size-6">
-  <path strokeLinecap="round" 
-        strokeLinejoin="round" 
-        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-</svg>
-)

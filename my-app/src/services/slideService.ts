@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { Carousel }from '../ServicesTypes';
+import { Carousel } from '../ServicesTypes'
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
 // Type definition for Carousel
-
 
 // Handle API errors
 const handleApiError = (error: any, defaultMessage: string) => {
