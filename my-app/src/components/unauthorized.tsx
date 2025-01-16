@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
-import '../styles/login.scss'; // Import the CSS file
+import '../styles/Login.scss'; // Import the CSS file
 
 const Unauthorized: React.FC = () => {
   const navigate = useNavigate(); // Initialize the navigate function
