@@ -18,7 +18,11 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://test-dev-fe.onrender.com'],
+  credentials: true
+}));
+
 
 // Connect to MongoDB
 connectDB();

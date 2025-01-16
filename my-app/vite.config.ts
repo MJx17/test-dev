@@ -7,8 +7,20 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler' // or "modern"
+         api: 'modern-compiler'
       }
     },
   },
-})
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Group all node_modules libraries into a 'vendor' chunk
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        }
+      }
+    }
+  }
+});
