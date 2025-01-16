@@ -27,7 +27,7 @@ const Ticker: React.FC = () => {
         ]);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch((_error) => {
         setError('Failed to fetch currency rates');
         setLoading(false);
       });
