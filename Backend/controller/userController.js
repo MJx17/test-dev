@@ -1,6 +1,6 @@
 // controller/userController.js
 const User = require('../models/user');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Role = require('../models/roles');  // Assuming you have a role model
 
