@@ -1,6 +1,11 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { loginService, logoutService } from '../services/authService';
+import Cookies from 'js-cookie';
+import {
+  loginService,  // You'll call the login service in the backend
+  refreshAccessTokenService,  // Handle token refresh on backend
+  logoutService,  // Call the logout API to clear tokens
+} from '../services/authService';
 
 interface User {
   _id: string;
@@ -16,8 +21,9 @@ interface AuthState {
   error: string | null;
   success: string | null;
 
+  initialize: () => void;
   login: (email: string, password: string) => Promise<void>;
-  checkAuth: () => Promise<void>;
+  refreshAccessToken: () => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -30,13 +36,22 @@ const useAuthStore = create<AuthState>()(
       loading: false,
       error: null,
       success: null,
-      roles: [],
 
-      // Login function
+      // Initialize state based on tokens
+      initialize: () => {
+        const accessToken = Cookies.get('accessToken');
+        if (accessToken) {
+          set({ isAuthenticated: true });
+        }
+      },
+
+      // Login function (now purely calls the backend service)
       login: async (email, password) => {
         set({ loading: true, error: null, success: null });
         try {
-          const data = await loginService(email, password); // Login via backend
+          const data = await loginService(email, password); // API call to backend
+          Cookies.set('accessToken', data.accessToken, { expires: 1 / 24, path: '/' });
+          Cookies.set('refreshToken', data.refreshToken, { expires: 7, path: '/' });
           set({
             isAuthenticated: true,
             user: data.user,
@@ -50,31 +65,33 @@ const useAuthStore = create<AuthState>()(
         }
       },
 
-      // Check authentication (e.g., on app load)
-      checkAuth: async () => {
+      // Refresh access token (call to backend service)
+      refreshAccessToken: async () => {
         try {
-          const data = await fetch('/api/auth/check', { credentials: 'include' }); // Backend validates tokens
-          if (data.ok) {
-            const user = await data.json();
-            set({ isAuthenticated: true, user });
-          } else {
-            set({ isAuthenticated: false, user: null });
-          }
-        } catch {
-          set({ isAuthenticated: false, user: null });
+          const data = await refreshAccessTokenService(); // API call to refresh token
+          Cookies.set('accessToken', data.accessToken, { expires: 1 / 24, path: '/' });
+          set({ isAuthenticated: true });
+        } catch (error: any) {
+          set({ error: error.message || 'Unable to refresh session.' });
         }
       },
 
-      // Logout function
+      // Logout function (calls the backend to log out and clear tokens)
       logout: async () => {
-        set({ loading: true, error: null, success: null });
         try {
-          await logoutService(); // Backend handles token deletion
-          set({ isAuthenticated: false, user: null, role: null, success: 'Logged out successfully!' });
+          await logoutService(); // Call to backend logout service
+          Cookies.remove('accessToken', { path: '/' });
+          Cookies.remove('refreshToken', { path: '/' });
+          useAuthStore.persist.clearStorage();
+          set({
+            isAuthenticated: false,
+            user: null,
+            role: null,
+            success: 'Logged out successfully!',
+            error: null,
+          });
         } catch (error: any) {
           set({ error: error.message || 'Logout failed. Please try again.' });
-        } finally {
-          set({ loading: false });
         }
       },
     }),
@@ -85,7 +102,7 @@ const useAuthStore = create<AuthState>()(
         isAuthenticated: state.isAuthenticated,
         user: state.user,
         role: state.role,
-      }), // Persist essential user state
+      }), // Persist only the essential authentication-related state
     }
   )
 );
