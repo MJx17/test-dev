@@ -3,7 +3,10 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Role = require('../models/roles');  // Assuming you have a role model
+const allowedDomains = ['onrender.com', 'vercel.app'];
 
+
+const domain = allowedDomains.includes(req.get('origin')) ? req.get('origin') : undefined;
 // Refresh Access Token if expired
 exports.refreshToken = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
@@ -96,6 +99,7 @@ exports.loginUser = async (req, res) => {
       sameSite: 'None', //For Prod
       maxAge: 15 * 60 * 1000, // 15 minutes
       path: '/',
+      domain: domain, 
     });
 
     res.cookie('refreshToken', refreshToken, {
@@ -105,6 +109,7 @@ exports.loginUser = async (req, res) => {
       sameSite: 'None', //For Prod
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       path: '/',
+      domain: domain, 
     });
 
     return res.status(200).json({
@@ -179,6 +184,7 @@ exports.logoutUser = async (req, res) => {
       // sameSite: 'Strict',
       sameSite: 'None', //For Prod
       path: '/',
+      domain: domain, 
     });
 
     res.clearCookie('refreshToken', {
@@ -187,6 +193,7 @@ exports.logoutUser = async (req, res) => {
       // sameSite: 'Strict',
       sameSite: 'None', //For Prod
       path: '/',
+      domain: domain, 
     });
 
     res.status(200).json({ message: 'Logout successful.' });
