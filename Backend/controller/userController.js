@@ -29,6 +29,7 @@ exports.refreshToken = async (req, res) => {
       secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
       // sameSite: 'Strict', //for Dev
       sameSite: 'None', //For Prod
+      path: '/',
       maxAge: 15 * 60 * 1000, // 15 minutes expiration
     });
 
@@ -177,6 +178,7 @@ exports.logoutUser = async (req, res) => {
       secure: process.env.NODE_ENV === 'production',
       // sameSite: 'Strict',
       sameSite: 'None', //For Prod
+      path: '/',
     });
 
     res.clearCookie('refreshToken', {
@@ -184,6 +186,7 @@ exports.logoutUser = async (req, res) => {
       secure: process.env.NODE_ENV === 'production',
       // sameSite: 'Strict',
       sameSite: 'None', //For Prod
+      path: '/',
     });
 
     res.status(200).json({ message: 'Logout successful.' });
