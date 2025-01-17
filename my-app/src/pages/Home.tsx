@@ -4,7 +4,7 @@ import { EffectFade, Navigation, Autoplay, Pagination } from "swiper/modules";
 import 'swiper/swiper-bundle.css';  // This includes all styles
 import { motion } from "framer-motion";
 import ArrowNav from '../utils/icons';
-import Rates from '../utils/rates';
+// import Rates from '../utils/rates';
 import "../styles/home.scss";
 import useCarouselStore from '../store/store';
 
@@ -86,8 +86,7 @@ const Slider: React.FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Rates />
-      <Rates />
+
     </div>
   );
 };
