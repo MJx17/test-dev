@@ -3,10 +3,7 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Role = require('../models/roles');  // Assuming you have a role model
-const allowedDomains = ['onrender.com', 'vercel.app'];
 
-
-const domain = allowedDomains.includes(req.get('origin')) ? req.get('origin') : undefined;
 // Refresh Access Token if expired
 exports.refreshToken = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
@@ -31,8 +28,8 @@ exports.refreshToken = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
       // sameSite: 'Strict', //for Dev
-      sameSite: 'None', //For Prod
       path: '/',
+      sameSite: 'None', //For Prod
       maxAge: 15 * 60 * 1000, // 15 minutes expiration
     });
 
@@ -99,17 +96,16 @@ exports.loginUser = async (req, res) => {
       sameSite: 'None', //For Prod
       maxAge: 15 * 60 * 1000, // 15 minutes
       path: '/',
-      domain: domain, 
     });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       // sameSite: 'Strict',
-      sameSite: 'None', //For Prod
+     
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       path: '/',
-      domain: domain, 
+      sameSite: 'None', //For Prod
     });
 
     return res.status(200).json({
@@ -182,18 +178,16 @@ exports.logoutUser = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       // sameSite: 'Strict',
-      sameSite: 'None', //For Prod
       path: '/',
-      domain: domain, 
+      sameSite: 'None', //For Prod
     });
 
     res.clearCookie('refreshToken', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       // sameSite: 'Strict',
-      sameSite: 'None', //For Prod
       path: '/',
-      domain: domain, 
+      sameSite: 'None', //For Prod
     });
 
     res.status(200).json({ message: 'Logout successful.' });
