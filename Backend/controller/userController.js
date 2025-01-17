@@ -27,7 +27,8 @@ exports.refreshToken = async (req, res) => {
     res.cookie('accessToken', newAccessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-      sameSite: 'Strict',
+      // sameSite: 'Strict', //for Dev
+      sameSite: 'None', //For Prod
       maxAge: 15 * 60 * 1000, // 15 minutes expiration
     });
 
@@ -90,7 +91,8 @@ exports.loginUser = async (req, res) => {
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
+      // sameSite: 'Strict',
+      sameSite: 'None', //For Prod
       maxAge: 15 * 60 * 1000, // 15 minutes
       path: '/',
     });
@@ -98,7 +100,8 @@ exports.loginUser = async (req, res) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
+      // sameSite: 'Strict',
+      sameSite: 'None', //For Prod
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       path: '/',
     });
@@ -172,13 +175,15 @@ exports.logoutUser = async (req, res) => {
     res.clearCookie('accessToken', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
+      // sameSite: 'Strict',
+      sameSite: 'None', //For Prod
     });
 
     res.clearCookie('refreshToken', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
+      // sameSite: 'Strict',
+      sameSite: 'None', //For Prod
     });
 
     res.status(200).json({ message: 'Logout successful.' });
