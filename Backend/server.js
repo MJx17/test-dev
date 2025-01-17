@@ -23,8 +23,9 @@ app.use(cookieParser());
 //   origin: ['http://localhost:5173', 'https://test-dev-fe.onrender.com'],
 //   credentials: true
 // }));
-
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : []; // Fallback to empty array if not set
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -36,7 +37,6 @@ app.use(cors({
   },
   credentials: true
 }));
-
 
 // Connect to MongoDB
 connectDB();
