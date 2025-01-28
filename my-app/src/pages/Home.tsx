@@ -10,7 +10,7 @@ import RateList from '../pages/Rates';
 import { Carousel } from "../ServicesTypes";
 import Loading from "../utils/loading"; // Make sure you have a loading component
 import NoticeListCard from '../pages/cards/cards'
-import FeatureCardContainer  from "../components/FeautureCardList";
+
 
 const Slider: React.FC = () => {
   const [slideKey, setSlideKey] = useState<number>(0);  // Type state as a number
