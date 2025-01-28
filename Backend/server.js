@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://test-dev-fe.onrender.com','https://test-dev-6jqo.vercel.app' ],
+  origin: ['http://localhost:5173', 'https://test-dev-fe.onrender.com','https://test-dev-gamma.vercel.app' ],
   credentials: true
 }));
 
