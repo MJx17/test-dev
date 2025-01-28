@@ -21,7 +21,7 @@ const ModalComponent: React.FC = () => {
   const [loading, setLoading] = useState(false); 
 
   // Access Zustand store
-  const { login, isAuthenticated, error, success } = useAuthStore();
+  const { login,  error, success } = useAuthStore();
   const navigate = useNavigate(); 
 
  
