@@ -1,7 +1,6 @@
 // routes/slideshowRoutes.js
 const express = require('express');
 const multer = require('multer');
-const slideshowController = require('../controller/SlidesController');
 const Carousel = require('../controller/Carousel')
 const { authenticateJWT } = require('../middleware/checkPermission');
 const router = express.Router();

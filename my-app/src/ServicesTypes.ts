@@ -71,3 +71,38 @@ export interface Carousel {
   updatedAt: string;
   deletedAt?: string | null; // Optional to track soft delete
 }
+
+
+export interface NoticeCard {
+  _id: string;
+  title: string;
+  description: string;
+  imageUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string | null; // Optional to track soft delete
+}
+//Rate Types
+
+
+export interface ExchangeRate {
+  _id: string; // Unique identifier for the resource (optional for new resources)
+  currency: string | null;
+  value: number;
+  selling_rate: number;
+  countryCode?: string;
+  deletedAt?: string | null; // Optional to track soft delete
+  createdAt: string; // Timestamp when the resource was created (optional for new resources)
+  updatedAt: string; // Timestamp when the resource was last updated (optional for new resources)
+  
+}
+
+
+export type NewExchangeRate = {
+  currency: string | null;
+  value: number;
+  selling_rate: number;
+  countryCode?: string;
+  symbol?: string;
+};
+

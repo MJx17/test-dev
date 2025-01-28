@@ -159,47 +159,192 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="mobile-menu" ref={linksContainerRef}>
-          <ul className="mobile-menu-links">
-            <Accordion sx={{ boxShadow: 'none' }}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="personal-content"
-                id="personal-header"
-                sx={{ boxShadow: 'none' }}
-              >
-                <li className="menu-item">
-                  <Link to="/personal">Personal</Link>
-                </li>
-              </AccordionSummary>
-              <AccordionDetails>
-                {/* Sub-Accordions */}
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="personal-loans-content"
-                    id="personal-loans-header"
-                  >
-                    <li>
-                      <Link to="/loans">Loans</Link>
-                    </li>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <ul>
-                      <li>
-                        <Link to="/home-loan">Home Loan</Link>
-                      </li>
-                      <li>
-                        <Link to="/car-loan">Car Loan</Link>
-                      </li>
-                    </ul>
-                  </AccordionDetails>
-                </Accordion>
-              </AccordionDetails>
-            </Accordion>
-          </ul>
-        </div>
-      )}
+        
+                <div className="mobile-menu" ref={linksContainerRef}>
+                  <ul className="mobile-menu-links">
+                    <Accordion    sx={{boxShadow: 'none'}}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="personal-content"
+                        id="personal-header"
+                        sx={{boxShadow: 'none'}}
+                      >
+                        <li className="menu-item">
+                          <Link to="/personal">Personal</Link>
+                        </li>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        {/* Sub-Accordion 1: Philtrust BankOnline */}
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="personal-philtrust-content"
+                            id="personal-philtrust-header"
+                          >
+                            <li>
+                              <Link to="/philtrust">Philtrust BankOnline</Link>
+                            </li>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <ul>
+                              <li>
+                                <Link to="/instapay">Instapay</Link>
+                              </li>
+                              <li>
+                                <Link to="/pesonet">PESONet</Link>
+                              </li>
+                            </ul>
+                          </AccordionDetails>
+                        </Accordion>
+        
+                        {/* Sub-Accordion 2: Loans */}
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="personal-loans-content"
+                            id="personal-loans-header"
+                          >
+                            <li>
+                              <Link to="/loans">Loans</Link>
+                            </li>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <ul>
+                              <li>
+                                <Link to="/home-loan">Home Loan</Link>
+                              </li>
+                              <li>
+                                <Link to="/car-loan">Car Loan</Link>
+                              </li>
+                            </ul>
+                          </AccordionDetails>
+                        </Accordion>
+        
+                        {/* Sub-Accordion 3: Savings and Deposit */}
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="personal-savings-content"
+                            id="personal-savings-header"
+                          >
+                            <li>
+                              <Link to="/savings">Savings and Deposit</Link>
+                            </li>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <ul>
+                              <li>
+                                <Link to="/regular-savings">Regular Savings</Link>
+                              </li>
+                              <li>
+                                <Link to="/time-deposit">Time Deposit</Link>
+                              </li>
+                            </ul>
+                          </AccordionDetails>
+                        </Accordion>
+        
+                        {/* Sub-Accordion 4: Personal Trust Services */}
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="personal-trust-content"
+                            id="personal-trust-header"
+                          >
+                            <li>
+                              <Link to="/trust-services">Personal Trust Services</Link>
+                            </li>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <ul>
+                              <li>
+                                <Link to="/trust-fund">Trust Fund</Link>
+                              </li>
+                              <li>
+                                <Link to="/wealth-management">Wealth Management</Link>
+                              </li>
+                            </ul>
+                          </AccordionDetails>
+                        </Accordion>
+        
+                        {/* Sub-Accordion 5: Other Services */}
+                        <Accordion>
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="personal-other-services-content"
+                            id="personal-other-services-header"
+                          >
+                            <li>
+                              <Link to="/other-services">Other Services</Link>
+                            </li>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <ul>
+                              <li>
+                                <Link to="/insurance">Insurance</Link>
+                              </li>
+                              <li>
+                                <Link to="/investment">Investment</Link>
+                              </li>
+                            </ul>
+                          </AccordionDetails>
+                        </Accordion>
+                      </AccordionDetails>
+                    </Accordion>
+        
+                    {/* Business Accordion */}
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="business-content"
+                        id="business-header"
+                      >
+                        <li className="menu-item">
+                          <Link to="/business">Business</Link>
+                        </li>
+                      </AccordionSummary>
+                    </Accordion>
+        
+                    {/* About Us Accordion */}
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="about-content"
+                        id="about-header"
+                      >
+                        <li className="menu-item">
+                          <Link to="/about">About Us</Link>
+                        </li>
+                      </AccordionSummary>
+                    </Accordion>
+        
+                    {/* For Investors Accordion */}
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="investors-content"
+                        id="investors-header"
+                      >
+                        <li className="menu-item">
+                          <Link to="/investors">For Investors</Link>
+                        </li>
+                      </AccordionSummary>
+                    </Accordion>
+        
+                    {/* Contact Us Accordion */}
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="contact-content"
+                        id="contact-header"
+                      >
+                        <li className="menu-item">
+                          <Link to="/contact">Contact Us</Link>
+                        </li>
+                      </AccordionSummary>
+                    </Accordion>
+                  </ul>
+                </div>
+              )}
 
       <MegaMenu
         activeDropdown={activeDropdown}

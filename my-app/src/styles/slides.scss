@@ -1,17 +1,17 @@
 // ResponsiveTable.scss
-.slides-table-container {
+.slides-table-container, .rates-table-container {
   display: block;
 
-  .slides-table-head {
+  .slides-table-head, .rates-table-head {
     background-color: #242424;
     color: white;
 
-    .slides-table-cell {
+    .slides-table-cell, .rates-table-cell{
       color: white;
     }
   }
 
-  .slides-table-row {
+  .slides-table-row, .rates-table-row{
     &.deleted {
       background-color: #f8d7da;
       color: #721c24;
@@ -25,11 +25,11 @@
   }
 }
 
-.slides-table-card-container {
+.slides-table-card-container, .rates-table-card-container {
   display: none; // Hidden by default for desktop
   gap: 16px;
 
-  .slides-table-card {
+  .slides-table-card, .rates-table-card {
     background-color: white;
     padding: 16px;
     border: 1px solid #ddd;
@@ -65,17 +65,20 @@
 
 // Responsive breakpoints
 @media (max-width: 820px) {
-  .slides-table-container {
-    display: none; // Hide the table for mobile
+  .slides-table-container, .rates-table-container{
+    display: none;
   }
 
-  .slides-table-card-container {
+  .slides-table-card-container, .rates-table-card-container {
     display: flex; // Show cards for mobile
     flex-direction: column;
     
   }
- 
+  
 }
+
+
+
 @media (max-width: 780px) {
   .carousel-title,
   .carousel-description {
@@ -83,14 +86,15 @@
   }
 }
 
-.carousel-menu-buttons {
-  /* Default padding for larger screens or no padding */
-}
+
 
 /* Apply 10px padding only for mobile screens */
 @media (max-width: 820px) {
   .carousel-menu-buttons {
     padding: 10px !important; /* Padding for mobile only */
+  }
+  .rates-menu-buttons{
+    width: 100% !important;
   }
 }
 
@@ -101,7 +105,7 @@
   .select-all-button, .select-all-deleted-button {
     width: 120px;
     color: white;
-    padding: 8px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,9 +115,14 @@
 
   .select-all-button {
     background-color: #1976d2; /* Blue background */
+
   }
 
   .select-all-deleted-button {
     background-color: red; /* Red background */
+    height: 50px;
   }
 }
+
+
+

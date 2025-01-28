@@ -1,177 +1,192 @@
 import { create } from 'zustand';
-import {
-  createCarouselService,
-  updateCarouselService,
-  restoreCarouselService,
-  softDeleteCarouselService,
-  hardDeleteCarouselService,
-  getActiveCarouselByIdService,
-  getCarouselsService,
-  getAllCarouselsService,
-  getSoftDeletedCarouselByIdService,
-} from '../services/slideService'; // Import API services
-import {Carousel} from '../ServicesTypes';
+import { ExchangeRate, NewExchangeRate } from '../ServicesTypes';
+import { restoreExchangeRate, hardDeleteExchangeRate } from '../services/rateServices';
+import { 
+  getExchangeRates, 
+  createExchangeRate, 
+  updateExchangeRate, 
+  deleteExchangeRate, 
+  getExchangeRateById, 
+  getAllExchangeRates
+} from '../services/rateServices';
 
-interface CarouselState {
-  title: string;
-  description: string;
-  imageUrl: string | File | null;
-  carousels: Carousel[]; // Now using the Carousel type
-  softDeletedCarousels: Carousel[]; // Now using the Carousel type
-  activeCarousel: Carousel | null; // Now using the Carousel type
-
-  setTitle: (title: string) => void;
-  setDescription: (description: string) => void;
-  setImageUrl: (imageUrl: string | File | null) => void;
+interface ExchangeRateStore {
+  exchangeRates: ExchangeRate[];
+  loading: boolean;
+  error: string | null;
+  currency: string | null;
+  value: number;
+  selling_rate: number;
+  countryCode: string;
+  setCurrency: (currency: string | null) => void;
+  setValue: (value: number) => void;
+  setSellingRate: (selling_rate: number) => void;
+  setCountryCode: (countryCode: string) => void;
+  setExchangeRates: (exchangeRates: ExchangeRate[]) => void;
+  addExchangeRate: (exchangeRateData: NewExchangeRate) => Promise<void>;
+  updateExchangeRate: (id: string, exchangeRateData: Partial<ExchangeRate>) => Promise<void>;
+  removeExchangeRate: (id: string) => Promise<void>;
+  restoreRate: (id: string) => Promise<void>;
+  hardDeleteRate: (id: string) => Promise<void>;
+  fetchExchangeRates: () => Promise<void>;
+  fetcAllExchangeRates: () => Promise<void>;
+  fetchExchangeRateById: (id: string) => Promise<ExchangeRate | undefined>;
   resetForm: () => void;
-  submitCarouselForm: (image: File) => Promise<void>;
-  updateCarousel: (id: string, data: any, image?: File) => Promise<void>;
-  restoreCarousel: (id: string) => Promise<void>;
-  softDeleteCarousel: (id: string) => Promise<void>;
-  hardDeleteCarousel: (id: string) => Promise<void>;
-  getActiveCarouselById: (id: string) => Promise<void>;
-  getCarousels: () => Promise<void>;
-  getAllCarousels: () => Promise<void>;
-  getSoftDeletedCarouselById: (id: string) => Promise<void>;
+  setLoading: (loading: boolean) => void;
+  setError: (error: string | null) => void;
 }
 
-// Define your Zustand store with Carousel types
-const useCarouselStore = create<CarouselState>((set) => ({
-  title: '',
-  description: '',
-  imageUrl: '',
-  carousels: [], // Now using the Carousel type
-  softDeletedCarousels: [], // Now using the Carousel type
-  activeCarousel: null, // Now using the Carousel type
-  setImageUrl: (imageUrl: string | File | null) => set({ imageUrl }),
-  setTitle: (title: string) => set({ title }),
-  setDescription: (description: string) => set({ description }),
+export const useExchangeRateStore = create<ExchangeRateStore>((set, get) => ({
+  exchangeRates: [],
+  loading: false,
+  error: null,
+  currency: '',
+  value: 0,
+  selling_rate: 0,
+  countryCode: '',
 
-  resetForm: () => set({
-    title: '',
-    description: '',
-    imageUrl: null,
-  }),
+  setCurrency: (currency) => set({ currency }),
+  setValue: (value) => set({ value }),
+  setSellingRate: (selling_rate) => set({ selling_rate }),
+  setCountryCode: (countryCode) => set({ countryCode }),
 
-  submitCarouselForm: async (image: File) => {
-    const { title, description, resetForm, getAllCarousels, getCarousels, } = useCarouselStore.getState();
+  setExchangeRates: (exchangeRates) => set({ exchangeRates }),
 
-    if (!title || !description || !image) {
-      alert('Title, description, and image are required.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('imageUrl', image);
+  addExchangeRate: async (exchangeRateData: NewExchangeRate) => {
+    const { resetForm, setError, setLoading, fetchExchangeRates } = get();
+    setLoading(true);
+    setError(null);
 
     try {
-      const response = await createCarouselService(formData);
-      if (response.imageUrl) {
-        set({ imageUrl: response.imageUrl });
-        resetForm();
-        getCarousels();
-        getAllCarousels();
+      if (!exchangeRateData.currency || !exchangeRateData.value || !exchangeRateData.selling_rate) {
+        throw new Error('Missing required fields.');
       }
+
+      const newExchangeRate = await createExchangeRate(exchangeRateData);
+      set((state) => ({ exchangeRates: [...state.exchangeRates, newExchangeRate] }));
+
+      resetForm();
+      await fetchExchangeRates();
     } catch (error) {
-      console.error('Failed to create carousel:', error);
+      console.error('Error adding exchange rate:', error);
+      setError(error instanceof Error ? error.message : 'Failed to add exchange rate.');
+    } finally {
+      setLoading(false);
     }
   },
 
-  updateCarousel: async (id: string, data: any, image?: File) => {
-    try {
-      const formData = new FormData();
-  
-      // Only append data if it has been updated
-      if (data.title !== undefined && data.title !== '') {
-        formData.append('title', data.title);
-      }
-  
-      if (data.description !== undefined && data.description !== '') {
-        formData.append('description', data.description);
-      }
-  
-      // Append image if provided or use existing imageUrl
-      if (image) {
-        formData.append('imageUrl', image);
-      } else if (data.imageUrl) {
-        formData.append('imageUrl', data.imageUrl);
-      }
-  
-      const response = await updateCarouselService(id, formData);
-      console.log('Carousel updated:', response);
-    } catch (error) {
-      console.error('Failed to update carousel:', error);
-    }
-  },
-  
+  updateExchangeRate: async (id: string, exchangeRateData: Partial<ExchangeRate>) => {
+    const { setError, setLoading } = get();
+    setLoading(true);
+    setError(null);
 
-  restoreCarousel: async (id) => {
     try {
-      const response = await restoreCarouselService(id);
-      console.log('Carousel restored:', response);
+      const updatedExchangeRate = await updateExchangeRate(id, exchangeRateData);
+      set((state) => ({
+        exchangeRates: state.exchangeRates.map((rate) =>
+          rate._id === id ? { ...rate, ...updatedExchangeRate } : rate
+        ),
+      }));
     } catch (error) {
-      console.error('Failed to restore carousel:', error);
+      console.error('Error updating exchange rate:', error);
+      setError(error instanceof Error ? error.message : 'Failed to update exchange rate.');
+    } finally {
+      setLoading(false);
     }
   },
 
-  softDeleteCarousel: async (id) => {
+  removeExchangeRate: async (id: string) => {
+    const { setError, setLoading } = get();
+    setLoading(true);
+    setError(null);
+
     try {
-      const response = await softDeleteCarouselService(id);
-      console.log('Carousel soft deleted:', response);
+      await deleteExchangeRate(id);
+      set((state) => ({
+        exchangeRates: state.exchangeRates.filter((rate) => rate._id !== id),
+      }));
     } catch (error) {
-      console.error('Failed to soft delete carousel:', error);
+      console.error('Error removing exchange rate:', error);
+      setError(error instanceof Error ? error.message : 'Failed to remove exchange rate.');
+    } finally {
+      setLoading(false);
     }
   },
 
-  hardDeleteCarousel: async (id) => {
+  fetchExchangeRates: async () => {
+    set({ loading: true, error: null });
+
     try {
-      const response = await hardDeleteCarouselService(id);
-      console.log('Carousel hard deleted:', response);
+      const rates = await getExchangeRates();
+      set({ exchangeRates: rates, loading: false });
     } catch (error) {
-      console.error('Failed to hard delete carousel:', error);
+      console.error('Error fetching exchange rates:', error);
+      set({ error: 'Error fetching exchange rates', loading: false });
     }
   },
 
-  getActiveCarouselById: async (id) => {
+  fetcAllExchangeRates: async () => {
+    set({ loading: true, error: null });
+
     try {
-      const response = await getActiveCarouselByIdService(id);
-      set({ activeCarousel: response });
-      console.log('Fetched active carousel by ID:', response);
+      const rates = await getAllExchangeRates();
+      set({ exchangeRates: rates, loading: false });
     } catch (error) {
-      console.error('Failed to fetch active carousel by ID:', error);
+      console.error('Error fetching exchange rates:', error);
+      set({ error: 'Error fetching exchange rates', loading: false });
     }
   },
 
-  getCarousels: async () => {
+  restoreRate: async (id: string) => {
+    set({ loading: true, error: null });
     try {
-      const response = await getCarouselsService();
-      set({ carousels: response });
-      console.log('Fetched carousels:', response);
+      const restoredRate = await restoreExchangeRate(id);
+      set((state) => ({
+        exchangeRates: state.exchangeRates.map((rate) =>
+          rate._id === id ? restoredRate : rate
+        ),
+        loading: false,
+      }));
     } catch (error) {
-      console.error('Failed to fetch carousels:', error);
+      console.error('Error restoring exchange rate:', error);
+      set({ error: 'Failed to restore exchange rate.', loading: false });
+    }
+  },
+  hardDeleteRate: async (id: string) => {
+    set({ loading: true, error: null });
+    try {
+      await hardDeleteExchangeRate(id);
+      set((state) => ({
+        exchangeRates: state.exchangeRates.filter((rate) => rate._id !== id),
+        loading: false,
+      }));
+    } catch (error) {
+      console.error('Error permanently deleting exchange rate:', error);
+      set({ error: 'Failed to delete exchange rate.', loading: false });
     }
   },
 
-  getAllCarousels: async () => {
+
+  fetchExchangeRateById: async (id: string) => {
+    set({ loading: true, error: null });
+
     try {
-      const response = await getAllCarouselsService();
-      set({ carousels: response });
-      console.log('Fetched all carousels (including soft deleted):', response);
+      const rate = await getExchangeRateById(id);
+      set((state) => ({
+        exchangeRates: [...state.exchangeRates.filter((r) => r._id !== id), rate],
+        loading: false,
+      }));
+      return rate;
     } catch (error) {
-      console.error('Failed to fetch all carousels:', error);
+      console.error('Error fetching exchange rate by ID:', error);
+      set({ error: 'Error fetching exchange rate by ID', loading: false });
+      return undefined;
     }
   },
 
-  getSoftDeletedCarouselById: async (id) => {
-    try {
-      const response = await getSoftDeletedCarouselByIdService(id);
-      console.log('Fetched soft-deleted carousel by ID:', response);
-    } catch (error) {
-      console.error('Failed to fetch soft-deleted carousel by ID:', error);
-    }
-  },
+  resetForm: () => set({ currency: '', value: 0, selling_rate: 0, countryCode: '' }),
+
+  setLoading: (loading) => set({ loading }),
+
+  setError: (error) => set({ error }),
 }));
-
-export default useCarouselStore;

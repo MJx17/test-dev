@@ -19,24 +19,26 @@ const app = express();
 app.use(express.json());
 
 app.use(cookieParser());
-// app.use(cors({
-//   origin: ['http://localhost:5173', 'https://test-dev-fe.onrender.com'],
-//   credentials: true
-// }));
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',')
-  : []; // Fallback to empty array if not set
-
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow the origin
-    } else {
-      callback(new Error('Not allowed by CORS')); // Block the origin
-    }
-  },
+  origin: ['http://localhost:5173', 'https://test-dev-fe.onrender.com'],
   credentials: true
 }));
+
+
+// const allowedOrigins = process.env.ALLOWED_ORIGINS
+//   ? process.env.ALLOWED_ORIGINS.split(',')
+//   : []; // Fallback to empty array if not set
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true); // Allow the origin
+//     } else {
+//       callback(new Error('Not allowed by CORS')); // Block the origin
+//     }
+//   },
+//   credentials: true
+// }));
 
 // Connect to MongoDB
 connectDB();
@@ -56,7 +58,7 @@ const cfUploadRoute = require('./routes/cloudflare');
 const cf = require('./routes/Cf');
 const rates = require('./routes/rates');
 const resourceRoutes = require('./routes/resource');
-
+const cardRoute = require('./routes/cardRoute');
 // Define a simple route
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -70,7 +72,7 @@ app.use('/', cfUploadRoute);
 app.use('/', cf);
 app.use('/', rates);
 app.use('/', resourceRoutes);
-
+app.use('/', cardRoute);
 
 
 // Start the server

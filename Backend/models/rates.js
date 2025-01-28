@@ -8,12 +8,16 @@ const exchangeRateSchema = new mongoose.Schema({
     unique: true    // Ensures each currency has a unique record
   },
   value: {
-    type: Number,   // The value of the currency (e.g., 1 USD = 0.85 EUR)
+    type: Number,   // The value of the currency (e.g., 1 USD = 0.85 EUR) 
     required: true
   },
-  exchange_rate: {
-    type: Number,   // The exchange rate to a base currency (e.g., USD to EUR rate)
+  selling_rate: {
+    type: Number,   // The selling rate of the currency (e.g., USD to EUR selling rate)
     required: true
+  },
+  countryCode: {
+    type: String,   // Country code in ISO 3166-1 alpha-2 format (e.g., 'us', 'gb')
+    required: true,  // Ensure the country code is always present
   },
   createdAt: {
     type: Date,
@@ -23,15 +27,7 @@ const exchangeRateSchema = new mongoose.Schema({
     type: Date,
     default: null, // Automatically set to null unless deleted
   },
-  deletedBy: {
-    type: mongoose.Schema.Types.ObjectId, // Reference to the user who deleted it
-    ref: 'User', // Assuming you have a User model
-  },
-  editHistory: [{
-    editedAt: Date,
-    editedBy: mongoose.Schema.Types.ObjectId, // User who made the edit
-    changes: String,  // A string describing the changes made
-  }],
+
   auditLogs: [{
     type: mongoose.Schema.Types.ObjectId, // Reference to the AuditLog model
     ref: 'AuditLog',

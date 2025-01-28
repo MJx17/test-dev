@@ -211,6 +211,9 @@ const ModalComponent: React.FC = () => {
             </svg>
           </button>
         </div>
+        <button className="modal-button" ref={modalButtonRef}>
+          Click here to login
+        </button>
       </div>
     </div>
   );
