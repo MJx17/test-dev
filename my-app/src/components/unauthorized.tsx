@@ -11,7 +11,7 @@ const Unauthorized: React.FC = () => {
 
   return (
     <div className="unauthorized-container">
-      <h1 className="heading">Unauthorized Access</h1>
+      <h1 className="heading">403 - Unauthorized Access</h1>
       <p className="paragraph">You do not have permission to view this page.</p>
       <button className="back-home-button" onClick={handleGoHome}>
         Go Back Home

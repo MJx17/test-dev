@@ -370,7 +370,7 @@ exports.hardDeleteNoticeCard = async (req, res) => {
       console.error('Error fetching NoticeCards:', error);
       res.status(500).json({ error: 'Internal Server Error', message: error.message });
     }
-  };
+  }; 
 
   exports.getAllNoticeCards = async (req, res) => {
     try {

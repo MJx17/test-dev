@@ -21,24 +21,12 @@ const ModalComponent: React.FC = () => {
   const [loading, setLoading] = useState(false); 
 
   // Access Zustand store
-  const { login, isAuthenticated, error, success } = useAuthStore();
+  const { login, error, success } = useAuthStore();
   const navigate = useNavigate(); 
 
+ 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    // Prevent login if the user is already authenticated
-    if (isAuthenticated) {
-      const toastId = 'already-logged-in-toast';
-      if (!toast.isActive(toastId)) {
-        toast.info('You are already logged in!', { toastId });
-      }
-  
-      // Navigate to the dashboard after showing the toast
-      setTimeout(() => {
-        navigate('/dashboard'); // Make sure the dashboard route is correctly set in your React Router
-      }, 1500); // Set a timeout to ensure the toast is shown before navigating
-    }
   
     // Validate email and password
     if (!email || !password) {

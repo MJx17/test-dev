@@ -1,10 +1,8 @@
 import React from 'react';
-import { PacmanLoader } from 'react-spinners';
 
 const Loading: React.FC = () => {
-  // Inline styles for the loading container
   const containerStyle = {
-    position: 'absolute' as 'absolute', // Overlay on top
+    position: 'fixed' as 'fixed', // Use fixed to cover viewport
     top: 0,
     left: 0,
     right: 0,
@@ -12,14 +10,31 @@ const Loading: React.FC = () => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
-    zIndex: 9999, // Make sure it's above other content
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    zIndex: 9999,
+  };
+
+  const imageStyle = {
+    width: '150px',
+    height: 'auto',
+    animation: 'pulse 1.5s infinite ease-in-out',
   };
 
   return (
-    <div style={containerStyle}>
-      <PacmanLoader color="#FFFF00" size={150}/>
-    </div>
+    <>
+      <style>
+        {`
+          @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+          }
+        `}
+      </style>
+      <div style={containerStyle}>
+        <img src="PTC-logo.png" alt="Loading..." style={imageStyle} />
+      </div>
+    </>
   );
 };
 

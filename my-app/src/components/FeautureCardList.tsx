@@ -117,7 +117,7 @@ import React from "react";
 import { Tooltip } from "@mui/material";
 import { AccountBalance, House, HomeRepairService } from "@mui/icons-material";
 import { Link } from "react-router-dom"; // Ensure this is correct for hash routing
-import "../styles/home.scss";
+import "../styles/navbar.scss";
 
 const navItems = [
   { icon: AccountBalance, title: "Branch Locator", link: "/branch" }, // Updated to hash path

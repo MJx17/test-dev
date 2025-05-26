@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 // import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import GroupIcon from '@mui/icons-material/Group';
 
+
 interface AdminSidebarProps {
   toggled: boolean;
   onBackdropClick: () => void;
@@ -40,6 +41,39 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ toggled, onBackdropClick })
          component={<Link to="/Home" />} >
            Home
         </MenuItem>
+
+        <MenuItem  icon={<GroupIcon style={{ color: 'white' }} />} style={{ color: '#cfd7e6' }} 
+         component={<Link to="/currency-list" />} >
+           CurrencyList
+        </MenuItem>
+
+        <MenuItem  icon={<GroupIcon style={{ color: 'white' }} />} style={{ color: '#cfd7e6' }} 
+         component={<Link to="/currency-management" />} >
+           CurrencyManagement
+        </MenuItem>
+
+        
+        <MenuItem  icon={<GroupIcon style={{ color: 'white' }} />} style={{ color: '#cfd7e6' }} 
+         component={<Link to="/card-management" />} >
+           Card Management
+        </MenuItem>
+
+        <MenuItem  icon={<GroupIcon style={{ color: 'white' }} />} style={{ color: '#cfd7e6' }} 
+         component={<Link to="/cardlist" />} >
+           CardList
+        </MenuItem>
+
+        <MenuItem  icon={<GroupIcon style={{ color: 'white' }} />} style={{ color: '#cfd7e6' }} 
+         component={<Link to="/slidelist" />} >
+           SlideList
+        </MenuItem>
+
+
+        <MenuItem  icon={<GroupIcon style={{ color: 'white' }} />} style={{ color: '#cfd7e6' }} 
+         component={<Link to="/slidelist-admin" />} >
+           SlideList
+        </MenuItem>
+
 
         <MenuItem  icon={<GroupIcon style={{ color: 'white' }} />} style={{ color: '#cfd7e6' }} 
          component={<Link to="/role-permission-management" />} >

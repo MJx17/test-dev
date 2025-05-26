@@ -1,119 +1,94 @@
 import React, { forwardRef, MouseEventHandler } from "react";
-// import { TextField, Button, IconButton } from "@mui/material";
-// import CloseIcon from "@mui/icons-material/Close";
+import { Link } from "react-router-dom";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { menuData } from "../data/navbar"; // adjust path as needed
 import "../styles/navbar.scss";
 
-// Define types for the MenuItem props
 interface MenuItemProps {
   label: string;
-  onMouseEnter: MouseEventHandler<HTMLLIElement>;
   href: string;
+  onMouseEnter: MouseEventHandler<HTMLLIElement>;
 }
 
-// Define the MenuItem component
 const MenuItem: React.FC<MenuItemProps> = ({ label, onMouseEnter, href }) => (
   <li className="menu-item" onMouseEnter={onMouseEnter}>
-    <a href={href}>{label}</a>
+    <Link to={href}>{label}</Link>
   </li>
 );
 
-// Define types for the MegaMenu props
 interface MegaMenuProps {
   activeDropdown: string | null;
   onMouseEnter: MouseEventHandler<HTMLDivElement>;
   onMouseLeave: MouseEventHandler<HTMLDivElement>;
-  // searchQuery: string;
-  // onQueryChange: (query: string) => void;
-  // onSearch: () => void;
-  // onCloseSearch: () => void;
+  onClose: () => void;
 }
 
-// Define the MegaMenu component and forward refs if needed
 const MegaMenu = forwardRef<HTMLDivElement, MegaMenuProps>(({
   activeDropdown,
   onMouseEnter,
   onMouseLeave,
-  // searchQuery,
-  // onQueryChange,
-  // onSearch,
-  // onCloseSearch
-}, ref) => (
-  <div
-    ref={ref}
-    className={`mega-menu-container ${activeDropdown ? "visible" : ""}`}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-  >
-    <div className="mega-menu-content">
-      {activeDropdown === "personal" && (
-        <div className="mega-menu-column">
-          <h3>Personal</h3>
-          <ul>
-            <Accordion slotProps={{ heading: { component: 'h4' } }}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <MenuItem label="Philtrust BankOnline" href="#personal1" onMouseEnter={() => {}} />
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul>
-                  <li>InstaPay</li>
-                  <li>Peso Net</li>
-                </ul>
-              </AccordionDetails>
-            </Accordion>
-            <MenuItem label="Loans" href="#personal3" onMouseEnter={() => {}} />
-            <MenuItem label="Savings and Deposit" href="#personal4" onMouseEnter={() => {}} />
-            <MenuItem label="Personal Trust Services" href="#personal5" onMouseEnter={() => {}} />
-            <MenuItem label="Other Services" href="#personal6" onMouseEnter={() => {}} />
-          </ul>
-        </div>
-      )}
-      {activeDropdown === "business" && (
-        <div className="mega-menu-column">
-          <h3>Business</h3>
-          <ul>
-            <MenuItem label="Corporate Loans" href="#business1" onMouseEnter={() => {}} />
-            <MenuItem label="International Services" href="#business2" onMouseEnter={() => {}} />
-            <MenuItem label="Institutional Trust Services" href="#business3" onMouseEnter={() => {}} />
-          </ul>
-        </div>
-      )}
+  onClose,
+}, ref) => {
+  const activeMenu = menuData.find(item => item.label.toLowerCase() === activeDropdown?.toLowerCase());
 
-      {/* Search Section
-      {activeDropdown === "search" && (
-        <div className="mega-menu-search">
-          What do you want to search?
-          <div className="search-container">
-            <TextField
-              label="Search"
-              variant="outlined"
-              value={searchQuery}
-              onChange={(e) => onQueryChange(e.target.value)}
-              fullWidth
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={onSearch}
-              className="search-input-button"
-            >
-              Search
-            </Button>
-            <IconButton onClick={onCloseSearch} className="navbar-close-button">
-              <CloseIcon />
-            </IconButton>
+  return (
+    <div
+      ref={ref}
+      className={`mega-menu-container ${activeDropdown ? "visible" : ""}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="mega-menu-content">
+        {activeMenu && (
+          <div className="mega-menu-column">
+            <h3>{activeMenu.label}</h3>
+            <ul>
+              {activeMenu.subItems?.map((subItem) => {
+                if (subItem.subItems && subItem.subItems.length > 0) {
+                  return (
+                    <Accordion key={subItem.label}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls={`${subItem.label}-content`}
+                        id={`${subItem.label}-header`}
+                      >
+                        <MenuItem
+                          label={subItem.label}
+                          href={subItem.path}
+                          onMouseEnter={() => {}}
+                        />
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <ul>
+                          {subItem.subItems.map((nestedItem) => (
+                            <li key={nestedItem.label}>
+                              <Link to={nestedItem.path}>{nestedItem.label}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </AccordionDetails>
+                    </Accordion>
+                  );
+                }
+
+                return (
+                  <MenuItem
+                    key={subItem.label}
+                    label={subItem.label}
+                    href={subItem.path}
+                    onMouseEnter={() => {}}
+                  />
+                );
+              })}
+            </ul>
           </div>
-        </div>
-      )} */}
+        )}
+      </div>
     </div>
-  </div>
-));
+  );
+});
 
 export default MegaMenu;

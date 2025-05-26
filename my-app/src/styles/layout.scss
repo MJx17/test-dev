@@ -1,134 +1,121 @@
 .css-dip3t8 {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .css-8i0j0q {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
-.css-1t8x7v1>.ps-menu-button:hover {
-    background-color: #242424 !important;
+.css-1t8x7v1 > .ps-menu-button:hover {
+  background-color: #242424 !important;
 }
-
-
-
 
 .admin-navbar-container {
-    width: 100%;
-    padding: 26px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center the navbar contents */
-    position: fixed;
-    top: 0;
-    z-index: 4;
-    background: #242424;
-    color: #ffcc00;
+  width: 100%;
+  padding: 26px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the navbar contents */
+  position: fixed;
+  top: 0;
+  z-index: 4;
+  background: #242424;
+  color: #ffcc00;
 
-    /* Position Sidebar Toggle Icon outside of the flex flow */
-    .sidebar-toggle-icon {
-        position: absolute;
-        left: 20px; /* Position icon 20px from the left edge */
-        cursor: pointer;
-        svg {
-            color: white;
-            font-size: 40px;
-        }
+  /* Position Sidebar Toggle Icon outside of the flex flow */
+  .sidebar-toggle-icon {
+    position: absolute;
+    left: 20px; /* Position icon 20px from the left edge */
+    cursor: pointer;
+    svg {
+      color: white;
+      font-size: 40px;
     }
+  }
+
+  //Admin Navbar
 }
 
-
-
 @media (max-width: 600px) {
-
-    .main-content {
-      padding-left: 20px !important; 
-      padding-right:20px !important; 
-    }
-    
+  .main-content {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
+}
 
-  .main-content{
-    padding-top: 60px !important;
-  }
+.main-content {
+  padding-top: 60px !important;
+}
 
+.checkbox-div {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Arrange children in a row */
+  gap: 10px; /* Add spacing between buttons */
+  align-items: center; /* Align items vertically in the center */
+}
 
+/* Apply padding-left for mobile devices */
+@media (max-width: 768px) {
   .checkbox-div {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: row; /* Arrange children in a row */
-    gap: 10px; /* Add spacing between buttons */
-    align-items: center; /* Align items vertically in the center */
+    padding-left: 10px;
   }
-  
-  /* Apply padding-left for mobile devices */
-  @media (max-width: 768px) {
-    .checkbox-div {
-      padding-left: 10px;
-    }
-  }
-  
-
-
-
-
+}
 
 /* Adjusted Desktop Nav List Styling (Align to center) */
 .nav-links {
-    display: flex; /* Ensures the items are in a row */
-    list-style-type: none;
-    padding-left: 0;
-    margin-left: 0;
-    justify-content: center; /* Center the nav links */
+  display: flex; /* Ensures the items are in a row */
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+  justify-content: center; /* Center the nav links */
 
-    .nav-link {
-        text-decoration: none;
-        color: white;
-        margin-right: 20px; /* Space between links */
-        &:hover {
-            color: #ffcc00;
-        }
-
-        &.active {
-            color: #ffcc00;
-        }
+  .nav-link {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px; /* Space between links */
+    &:hover {
+      color: #ffcc00;
     }
+
+    &.active {
+      color: #ffcc00;
+    }
+  }
 }
 
 /* Mobile Navigation Menu - Center the menu */
 .basic-menu-container {
-    display: flex;
-    justify-content: center; /* Center the menu */
-    width: 100%;
-    padding: 10px;
+  display: flex;
+  justify-content: center; /* Center the menu */
+  width: 100%;
+  padding: 10px;
 }
 
 /* Style the Menu Links for mobile */
 .MuiMenu-list li a {
-    text-decoration: none;
-    color: #ffcc00;
-    display: block;
-    padding: 10px 20px;
+  text-decoration: none;
+  color: #ffcc00;
+  display: block;
+  padding: 10px 20px;
 }
 
 .MuiMenu-list li a:hover {
-    color: #242424;
+  color: #242424;
 }
-
-
 
 //PublicLayout SCSS
 
 /* .public-layout-container keeps everything aligned */
 /* Parent container for public layout */
 .public-layout-container {
-    background: transparent; /* Keeps the background as transparent */
-    height: auto;
-    min-height: 100vh;
+  background: transparent; /* Keeps the background as transparent */
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* Makes the layout vertical */
+}
 
-  }
+.public-main-content {
+  flex: 1;
   
-
-  .public-main-content {
-   
-  }
-
+}

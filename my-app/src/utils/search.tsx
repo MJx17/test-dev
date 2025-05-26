@@ -1,19 +1,18 @@
+// SearchBox.tsx
 import React from 'react';
 import { TextField } from '@mui/material';
+import { useSearchStore } from '../store/searchStore';
 
-interface SearchBoxProps {
-  searchTerm: string;
-  onSearchChange: (searchTerm: string) => void;
-}
+const SearchBox: React.FC = () => {
+  const { searchTerm, setSearchTerm } = useSearchStore();
 
-const SearchBox: React.FC<SearchBoxProps> = ({ searchTerm, onSearchChange }) => {
   return (
     <TextField
       label="Search"
       variant="outlined"
       fullWidth
       value={searchTerm}
-      onChange={(e) => onSearchChange(e.target.value)}
+      onChange={(e) => setSearchTerm(e.target.value)}
       margin="normal"
     />
   );

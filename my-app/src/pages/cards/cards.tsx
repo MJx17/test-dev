@@ -16,7 +16,7 @@ const NoticeListCard: React.FC = () => {
 
   useEffect(() => {
     getNoticeCards(); // Fetch carousel data from API
-  }, [getNoticeCards]);
+  }, []);
 
   if (loading) {
     return <Loading />;
@@ -27,7 +27,7 @@ const NoticeListCard: React.FC = () => {
       <div className="NoticeCards">
         <Swiper
           spaceBetween={20}
-          loop={true}
+          loop={false}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,

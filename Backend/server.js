@@ -20,9 +20,15 @@ app.use(express.json());
 
 app.use(cookieParser());
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://test-dev-fe.onrender.com','https://test-dev-gamma.vercel.app' ],
+  origin: [
+    'http://localhost:5173', 
+    'http://10.30.1.205:5173', // Removed leading space
+    'https://test-dev-fe.onrender.com',
+    'https://test-dev-gamma.vercel.app'
+  ],
   credentials: true
 }));
+
 
 
 // const allowedOrigins = process.env.ALLOWED_ORIGINS
@@ -77,10 +83,14 @@ app.use('/', cardRoute);
 
 // Start the server
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
 
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on http://0.0.0.0:${PORT}`);
+});
 // Cloudinary config
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

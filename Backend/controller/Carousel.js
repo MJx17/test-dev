@@ -38,7 +38,7 @@ exports.createCarousel = async (req, res) => {
   
         // Create a new carousel entry in the database using the Carousel model
         const newCarousel = new Carousel({
-          title,
+          title,  
           description,
           imageUrl, // Store the single image URL
         });

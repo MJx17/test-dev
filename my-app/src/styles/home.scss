@@ -1,9 +1,13 @@
-
 // Base Styles
+.carousel-container {
+  display: flex;
+  justify-content: center;
+}
+
 .Carousel {
   position: relative;
   width: 100%;
-  height: auto; // Adjust height based on your design
+  height: auto;
 
   .text-content {
     align-content: center;
@@ -11,8 +15,21 @@
     margin-left: 2.5rem;
   }
 
-  h2, p {
+  h2,
+  p {
     color: #344bbd;
+  }
+
+  @media (min-width: 1600px) {
+    width: 90%;
+    min-height: calc(70vh - 100px);
+    margin-bottom: -10rem;
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-horizontal > .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+      padding-bottom: 10rem !important;
+    }
   }
 }
 
@@ -133,9 +150,8 @@
 
 // Styles for devices larger than mobile (769px and up)
 @media (min-width: 1024px) {
-  .mySwiper{
+  .mySwiper {
     height: 100vh;
-  
   }
   .slide-content {
     flex-direction: row;
@@ -187,56 +203,32 @@
     width: 327px;
     background-color: #344bbd;
     z-index: -1;
+  }
 }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Notice-cards
 
-.noticecardswrapper{
-  padding: 20px;
-  height: auto;
- 
-}
-.mySwiperNoticeCard{
-  padding: 10px;
-
-}
 .notice-card {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 
   &:hover {
-    transform: translateY(-5px); // Slight lift effect
+    transform: translateY(-5px);
   }
 
   .notice-card-image {
     width: 100%;
     height: 300px;
- 
     overflow: hidden;
 
     .image {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Ensure the entire image is visible */
-    object-position: top center;
+      object-fit: contain;
+      object-position: top center;
     }
   }
 
@@ -245,11 +237,11 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9); // Semi-transparent white background
-    color: #333;
+    background: rgba(255, 255, 255, 0.9);
+    color: #344bbd;
     padding: 16px;
-    transform: translateY(100%); // Start below the card
-    transition: transform 0.3s ease;
+    transition: transform 1s ease; // slow transform
+    transform: translateY(0);
 
     .notice-card-title {
       font-size: 18px;
@@ -259,19 +251,29 @@
 
     .notice-card-description {
       font-size: 14px;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.8s ease, opacity 0.8s ease; // slow reveal
     }
   }
 
-  &:hover .notice-card-overlay {
-    transform: translateY(0); // Slide up on hover
+  &:hover .notice-card-description {
+    max-height: 300px; // increased just in case description is long
+    opacity: 1;
+  }
+
+  &.show-description .notice-card-description {
+    max-height: 300px;
+    opacity: 1;
   }
 }
 
 
 /// SCSS for Rates
-/// 
-/// 
-/// 
+///
+///
+///
 
 /* Wrapper for the container holding all exchange rates */
 .exchange-rate-wrapper {
@@ -285,7 +287,6 @@
   display: flex;
   justify-content: space-between; /* Aligns title to the left and date to the right */
   align-items: center; /* Vertically centers the title and date */
- 
 
   /* Media Query for mobile devices */
   @media (max-width: 420px) {
@@ -316,54 +317,4 @@
 .exchange-rate-value,
 .exchange-rate-selling {
   margin-right: 10px;
-}
-
-
-
-
-//Feautre Cards List
-.horizontal-navbar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end; /* Align items to the right */
-  padding: 5px 20px;
-  background-color: #f3fafc; /* Light background */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  border-radius: 8px;
-
-}
-
-.horizontal-navbar-item {
-  display: flex;
-  flex-direction: row; /* Align icon and text in a row */
-  align-items: center;
-  padding: 5px;
-  margin: 0 10px; /* Space between items */
-  transition: background-color 0.2s ease, color 0.2s ease;
-  border-radius: 6px;
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: #e0e0e0; /* Highlight effect on hover */
-  }
-}
-
-.horizontal-navbar-icon {
-  font-size: 24px; /* Adjust size for the icon */
-  color: #2623db; /* Darker color for the icon */
-  margin-right: 8px; /* Space between icon and text */
-}
-
-.horizontal-navbar-title {
-  font-size: 16px;
-  font-weight: 500;
-  color: #2623db;
-  white-space: nowrap; /* Prevent wrapping */
-}
-@media (max-width: 768px) {
-  .horizontal-navbar {
-    display: none; 
-  }
 }

@@ -97,8 +97,7 @@ const handleSortChange = (e: SelectChangeEvent<string>) => {
   setSortBy(e.target.value as "title-asc" | "title-desc" | "date-asc" | "date-desc");
 };
 
-    
-  const paginatedNoticeCards = filteredNoticeCards.slice(startIndex, endIndex);
+const paginatedNoticeCards = filteredNoticeCards.slice(startIndex, endIndex);
 
   useEffect(() => {
     getNoticeCards();

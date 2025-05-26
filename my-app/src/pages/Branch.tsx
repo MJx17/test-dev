@@ -49,7 +49,8 @@ const MapComponent: React.FC = () => {
     { id: 7, category: 'atm', position: [12.879444, 121.045556], image: '7.jpg', address: '5678 Commonwealth Ave', branchName: 'ATM Commonwealth', bankHours: '24/7', location: 'metro' },
     { id: 8, category: 'branch', position: [15.583333, 120.966667], image: '8.jpg', address: '6789 MacArthur Hwy', branchName: 'MacArthur Hwy Branch', bankHours: '9AM - 5PM', location: 'provincial' },
     { id: 9, category: 'atm', position: [11.250000, 124.633333], image: '9.jpg', address: '8901 Real St', branchName: 'ATM Real St', bankHours: '24/7', location: 'metro' },
-    { id: 10, category: 'branch', position: [18.533333, 121.633333], image: '10.jpg', address: '9012 Maharlika Hwy', branchName: 'Maharlika Branch', bankHours: '9AM - 5PM', location: 'provincial' }
+    { id: 10, category: 'branch', position: [18.533333, 121.633333], image: '10.jpg', address: '9012 Maharlika Hwy', branchName: 'Maharlika Branch', bankHours: '9AM - 5PM', location: 'provincial' }, 
+  
   ];
 
   const filteredMarkers = markers.filter(marker => {
@@ -170,7 +171,7 @@ const MapComponent: React.FC = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           <MapUpdater />
-          <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 900 }}>
+          <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1 }}>
             <button
               onClick={() => setShowClusters(prev => !prev)}
               className='eye-button'

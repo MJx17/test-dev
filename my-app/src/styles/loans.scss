@@ -1,0 +1,570 @@
+// loan page design
+.loan-page {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .loan-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    // margin: 1rem auto;
+
+    .loan-banner img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+
+    .loan-text {
+      max-width: 600px;
+
+      h1 {
+        font-size: 2rem;
+        color: #050284;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .loan-description {
+        font-size: 1.1rem;
+        color: #050284;
+      }
+    }
+  }
+
+  .button-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem 2rem;
+
+    .loan-card {
+      padding: 1rem;
+      border-radius: 16px;
+      background-color: #050284;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+      aspect-ratio: auto; // Mobile: flexible shape
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      svg {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        display: none; // Hidden on mobile
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    img {
+      min-height: 36vh;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .loan-description {
+      font-size: 1rem;
+      padding: 0 2rem 0 2rem;
+    }
+
+    .loan-section {
+      flex-direction: column;
+      text-align: justify;
+    }
+
+    .loan-banner {
+      order: 1; /* Image comes first */
+    }
+
+    .loan-text {
+      order: 2; /* Text comes second */
+    }
+
+    .button-group {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .loan-section {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 5rem 0 4rem 0;
+    }
+
+    h1,
+    .loan-description,
+    .button-group {
+      position: static;
+      transform: none;
+      text-align: left;
+      margin: 0;
+    }
+
+    .button-group {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 800px;
+      justify-items: center;
+      gap: 2rem;
+    }
+
+    .loan-card {
+      width: 120px;
+      height: 120px;
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        display: block !important;
+      }
+    }
+  }
+}
+
+// loan 2 page design
+.loan-section-2 {
+  position: relative;
+  background-image: url("/12.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .loan-text-2-header {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .loan-description-2 {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+  }
+
+  .loan-banner-2 {
+    position: relative;
+    z-index: 1;
+  }
+
+  .button-banner-2 {
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #adadbb;
+    color: white;
+    cursor: pointer;
+    box-shadow: none;
+    transition: transform 0.3s ease;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+}
+
+.button-group-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.loan-card-2 {
+  background-color: #febc11;
+  color: #222;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  justify-self: center;
+
+  &:hover {
+    background-color: #e0a800;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.loan-text-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 16px;
+  text-align: center;
+}
+
+.loan-image-2 img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 0 0 16px 16px;
+}
+
+.loan-card-con-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.loan-title-2 {
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+/* Tablet and up: 2-column layout and larger card size */
+@media (min-width: 600px) {
+  .button-group-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .loan-card-2 {
+    max-width: 700px;
+  }
+
+  .loan-title-2 {
+    font-size: 2rem;
+  }
+}
+
+// loan 3 design
+.loan-cards-wrapper-3 {
+  padding: 20px;
+  height: auto;
+}
+
+.mySwiperLoanCard-3 {
+  padding: 10px;
+}
+
+.loan-card-3 {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: #050284;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.loan-card-3:hover {
+  transform: translateY(-5px);
+}
+
+.loan-card-image-3 {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.loan-card-image-3 .image-3 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.loan-card-details-3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 16px;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.loan-card-title-3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.loan-card-description-3 {
+  font-size: 14px;
+}
+
+.loan-card-3:hover .loan-card-details-3 {
+  transform: translateY(100%);
+}
+
+.loan-section-3 {
+  position: relative;
+  background-image: url("/12.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+}
+
+.loan-section-3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.loan-text-3 {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.loan-text-3 h1 {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.loan-description-3 {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.loan-banner-3 {
+  position: relative;
+  z-index: 1;
+}
+
+.button-banner-3 {
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #adadbb;
+  color: white;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform 0.3s ease;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.button-banner-3:hover {
+  transform: translateY(-4px);
+}
+
+//loans 4 //
+
+// Loans4.scss
+
+.loan-page-4 {
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+
+  .loan-section-4 {
+    position: relative; // Required for the overlay positioning
+    margin-bottom: 2rem;
+    background-image: url("/12.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1; // Makes sure content is above the overlay
+
+    // Overlay
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5); // semi-transparent black
+      z-index: -1; // Places overlay behind the content
+    }
+
+    .loan-text-4,
+    .loan-banner-4 {
+      position: relative; // Make sure text and button are above overlay
+      z-index: 2;
+      color: #fff;
+    }
+
+    .loan-banner-4 {
+      margin-top: 1rem;
+
+      .button-banner-4 {
+        background-color: #007bff;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      min-height: 400px;
+    }
+  }
+
+  .loan-cards-wrapper-4 {
+    width: 100%;
+
+    margin: 0 auto;
+
+    .loan-cards-container-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 2rem;
+    }
+
+    .loan-card-4 {
+      background-color: #fff;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .loan-card-image-4 {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        padding: 0.5REM;
+
+        .image-4 {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .loan-card-details-4 {
+        padding: 1rem;
+
+        .loan-card-title-4 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: #050284;
+        }
+
+        .loan-card-description-4 {
+          font-size: 0.95rem;
+          color: #666;
+          max-width: 600px;
+          opacity: 0;
+          transform: translateY(10px);
+          max-height: 0;
+          overflow: hidden;
+          transition: opacity 0.4s ease, transform 0.4s ease,
+            max-height 0.4s ease;
+        }
+      }
+
+      &:hover .loan-card-description-4 {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 200px;
+      }
+    }
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .loan-card-4 {
+    // disable hover lift
+    transform: none !important;
+
+    .loan-card-description-4 {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      max-height: none !important;
+    }
+  }
+
+  .loan-card-4:hover {
+    transform: none !important;
+  }
+
+  .loan-card-4:hover .loan-card-description-4 {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    max-height: none !important;
+  }
+}

@@ -4,11 +4,24 @@ import '../styles/navbar.scss';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
 import MegaMenu from '../utils/menu';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+// import Accordion from '@mui/material/Accordion';
+// import AccordionDetails from '@mui/material/AccordionDetails';
+// import AccordionSummary from '@mui/material/AccordionSummary';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+  List,
+  ListItemButton,
+  ListItemText,
+  Collapse,
+  ListItemIcon,
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
 import { Link } from 'react-router-dom';
+import { menuData } from '../data/navbar';
+import useIsMobile from "../hooks/mobile";
+
 
 // Define types for MegaMenu props (if they exist in your project)
 // interface MegaMenuProps {
@@ -29,6 +42,17 @@ const Navbar: React.FC = () => {
   const megaMenuRef = useRef<HTMLDivElement>(null);
   const linksContainerRef = useRef<HTMLDivElement>(null);
 
+
+
+
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (isMobile && activeDropdown) {
+      setActiveDropdown(null); // or your dropdown close logic
+    }
+  }, [isMobile]);
+
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   // const handleSearch = () => {
@@ -36,6 +60,8 @@ const Navbar: React.FC = () => {
   //   setSearchQuery('');
   //   setActiveDropdown(null);
   // };
+
+
 
   const handleMouseEnterMenu = (menu: string) => {
     setActiveDropdown(menu);
@@ -61,34 +87,59 @@ const Navbar: React.FC = () => {
         }
       }
     };
-  
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  
+
+
+
+
+  useEffect(() => {
+    const handleScroll = (): void => {
+      const navbar = document.querySelector(".navbar") as HTMLElement | null;
+      if (navbar) {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
+  const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
+
+
+
 
   return (
     <div className="navbar-container" ref={navbarRef}>
       <nav className="navbar">
         <div className="navbar-logo">
           <Link to="/">
-            <img
-              src="logo.webp"
-              style={{ backgroundColor: 'white' }}
-              alt="logo"
-              className="logo"
-            />
+            {isMobile ? (
+              <img
+                src="ptc_blue1.png"
+                alt="logo"
+                className="mobile-logo" />
+            ) : (
+              <img
+                src="ptc_white1.png"
+                alt="logo"
+                className="logo" />
+            )}
           </Link>
-          <div className="navbar-text">
-            <Link className="text-logo" to="/">
-              Philtrust Bank
-            </Link>
-            <Link className="subtext-logo" to="/">
-              Universal Bank
-            </Link>
-          </div>
+
+
         </div>
 
         {/* Desktop Menu */}
@@ -112,28 +163,21 @@ const Navbar: React.FC = () => {
             </li>
             <li className="menu-item">
               <Link
-                to="/about"
-                onMouseEnter={() => handleMouseEnterMenu('about')}
+                to="/our-bank"
+                onMouseEnter={() => handleMouseEnterMenu('Our Bank')}
               >
-                About Us
+                Our Bank
               </Link>
             </li>
             <li className="menu-item">
               <Link
                 to="/investors"
-                onMouseEnter={() => handleMouseEnterMenu('investors')}
+                onMouseEnter={() => handleMouseEnterMenu('For Investors')}
               >
                 For Investors
               </Link>
             </li>
-            <li className="menu-item">
-              <Link
-                to="/contact"
-                onMouseEnter={() => handleMouseEnterMenu('contact')}
-              >
-                Contact Us
-              </Link>
-            </li>
+
           </ul>
         </div>
 
@@ -150,206 +194,188 @@ const Navbar: React.FC = () => {
               </a>
             </li>
           </ul>
+          <IconButton className="navbar-toggle" onClick={toggleMobileMenu}>
+            <MenuIcon style={{ color: '#fff' }} className="menu-icon" />
+          </IconButton>
         </div>
 
-        <IconButton className="navbar-toggle" onClick={toggleMobileMenu}>
-          <MenuIcon style={{ color: '#fff' }} className="menu-icon" />
-        </IconButton>
+
       </nav>
 
       {/* Mobile Menu */}
+      {/* Mobile Menu */}
+      {/* {isMobileMenuOpen && (
+        <div className="mobile-menu" ref={linksContainerRef}>
+          <ul className="mobile-menu-links">
+            {menuData.map((item, index) => {
+              const mainId = `main-${index}`;
+              return (
+                <Accordion
+                  key={mainId}
+                  expanded={expandedMain === mainId}
+                  onChange={(_, isExpanded) =>
+                    setExpandedMain(isExpanded ? mainId : false)
+                  }
+                  sx={{
+                    backgroundColor: '#fff',
+                    '&::before': {
+                      display: 'block',
+                      backgroundColor: '#050824',
+                    },
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={item.subItems ? <ExpandMoreIcon /> : null}
+                    aria-controls={`${item.label.toLowerCase()}-content`}
+                    id={`${item.label.toLowerCase()}-header`}
+                  >
+                    <li className="menu-item">
+                      <Link to={item.path}>{item.label}</Link>
+                    </li>
+                  </AccordionSummary>
+
+                  {item.subItems && (
+                    <AccordionDetails>
+                      {item.subItems.map((subItem, subIndex) => {
+                        const nestedId = `nested-${mainId}-${subIndex}`;
+                        return (
+                          <Accordion
+                            key={nestedId}
+                            expanded={expandedNested[mainId] === nestedId}
+                            onChange={(_, isExpanded) =>
+                              setExpandedNested((prev) => ({
+                                ...prev,
+                                [mainId]: isExpanded ? nestedId : false,
+                              }))
+                            }
+                            sx={{
+                              '&::before': {
+                                display: 'block',
+                                backgroundColor: '#050824',
+                              },
+                            }}
+                          >
+                            <AccordionSummary
+                              expandIcon={subItem.subItems ? <ExpandMoreIcon /> : null}
+                              aria-controls={`${subItem.label.toLowerCase()}-content`}
+                              id={`${subItem.label.toLowerCase()}-header`}
+                            >
+                              <li>
+                                <Link to={subItem.path}>{subItem.label}</Link>
+                              </li>
+                            </AccordionSummary>
+
+                            {subItem.subItems && (
+                              <AccordionDetails>
+                                <ul>
+                                  {subItem.subItems.map((nested, nestedIndex) => (
+                                    <li key={nestedIndex}>
+                                      <Link to={nested.path}>{nested.label}</Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </AccordionDetails>
+                            )}
+                          </Accordion>
+                        );
+                      })}
+                    </AccordionDetails>
+                  )}
+                </Accordion>
+              );
+            })}
+          </ul>
+        </div>
+      )} */}
+
       {isMobileMenuOpen && (
-        
-                <div className="mobile-menu" ref={linksContainerRef}>
-                  <ul className="mobile-menu-links">
-                    <Accordion    sx={{boxShadow: 'none'}}>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="personal-content"
-                        id="personal-header"
-                        sx={{boxShadow: 'none'}}
-                      >
-                        <li className="menu-item">
-                          <Link to="/personal">Personal</Link>
-                        </li>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        {/* Sub-Accordion 1: Philtrust BankOnline */}
-                        <Accordion>
-                          <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="personal-philtrust-content"
-                            id="personal-philtrust-header"
-                          >
-                            <li>
-                              <Link to="/philtrust">Philtrust BankOnline</Link>
-                            </li>
-                          </AccordionSummary>
-                          <AccordionDetails>
-                            <ul>
-                              <li>
-                                <Link to="/instapay">Instapay</Link>
-                              </li>
-                              <li>
-                                <Link to="/pesonet">PESONet</Link>
-                              </li>
-                            </ul>
-                          </AccordionDetails>
-                        </Accordion>
-        
-                        {/* Sub-Accordion 2: Loans */}
-                        <Accordion>
-                          <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="personal-loans-content"
-                            id="personal-loans-header"
-                          >
-                            <li>
-                              <Link to="/loans">Loans</Link>
-                            </li>
-                          </AccordionSummary>
-                          <AccordionDetails>
-                            <ul>
-                              <li>
-                                <Link to="/home-loan">Home Loan</Link>
-                              </li>
-                              <li>
-                                <Link to="/car-loan">Car Loan</Link>
-                              </li>
-                            </ul>
-                          </AccordionDetails>
-                        </Accordion>
-        
-                        {/* Sub-Accordion 3: Savings and Deposit */}
-                        <Accordion>
-                          <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="personal-savings-content"
-                            id="personal-savings-header"
-                          >
-                            <li>
-                              <Link to="/savings">Savings and Deposit</Link>
-                            </li>
-                          </AccordionSummary>
-                          <AccordionDetails>
-                            <ul>
-                              <li>
-                                <Link to="/regular-savings">Regular Savings</Link>
-                              </li>
-                              <li>
-                                <Link to="/time-deposit">Time Deposit</Link>
-                              </li>
-                            </ul>
-                          </AccordionDetails>
-                        </Accordion>
-        
-                        {/* Sub-Accordion 4: Personal Trust Services */}
-                        <Accordion>
-                          <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="personal-trust-content"
-                            id="personal-trust-header"
-                          >
-                            <li>
-                              <Link to="/trust-services">Personal Trust Services</Link>
-                            </li>
-                          </AccordionSummary>
-                          <AccordionDetails>
-                            <ul>
-                              <li>
-                                <Link to="/trust-fund">Trust Fund</Link>
-                              </li>
-                              <li>
-                                <Link to="/wealth-management">Wealth Management</Link>
-                              </li>
-                            </ul>
-                          </AccordionDetails>
-                        </Accordion>
-        
-                        {/* Sub-Accordion 5: Other Services */}
-                        <Accordion>
-                          <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="personal-other-services-content"
-                            id="personal-other-services-header"
-                          >
-                            <li>
-                              <Link to="/other-services">Other Services</Link>
-                            </li>
-                          </AccordionSummary>
-                          <AccordionDetails>
-                            <ul>
-                              <li>
-                                <Link to="/insurance">Insurance</Link>
-                              </li>
-                              <li>
-                                <Link to="/investment">Investment</Link>
-                              </li>
-                            </ul>
-                          </AccordionDetails>
-                        </Accordion>
-                      </AccordionDetails>
-                    </Accordion>
-        
-                    {/* Business Accordion */}
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="business-content"
-                        id="business-header"
-                      >
-                        <li className="menu-item">
-                          <Link to="/business">Business</Link>
-                        </li>
-                      </AccordionSummary>
-                    </Accordion>
-        
-                    {/* About Us Accordion */}
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="about-content"
-                        id="about-header"
-                      >
-                        <li className="menu-item">
-                          <Link to="/about">About Us</Link>
-                        </li>
-                      </AccordionSummary>
-                    </Accordion>
-        
-                    {/* For Investors Accordion */}
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="investors-content"
-                        id="investors-header"
-                      >
-                        <li className="menu-item">
-                          <Link to="/investors">For Investors</Link>
-                        </li>
-                      </AccordionSummary>
-                    </Accordion>
-        
-                    {/* Contact Us Accordion */}
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="contact-content"
-                        id="contact-header"
-                      >
-                        <li className="menu-item">
-                          <Link to="/contact">Contact Us</Link>
-                        </li>
-                      </AccordionSummary>
-                    </Accordion>
-                  </ul>
+        <div className="mobile-menu" ref={linksContainerRef}>
+          <List component="nav" className="mobile-menu-links">
+            {menuData.map((item, index) => {
+              const mainKey = `main-${index}`;
+              const isMainOpen = openItems[mainKey];
+
+              const toggleMain = () => {
+                setOpenItems(prev => (prev[mainKey] ? {} : { [mainKey]: true }));
+              };
+
+              const closeMenu = () => {
+                setIsMobileMenuOpen(false);
+                setOpenItems({});
+              };
+
+              return (
+                <div key={mainKey}>
+                  <ListItemButton onClick={item.subItems ? toggleMain : closeMenu}>
+                    <ListItemText sx={{ color: 'white' }}>
+                      <Link to={item.path || '#'} className="link" onClick={closeMenu}>
+                        {item.label}
+                      </Link>
+                    </ListItemText>
+                    {item.subItems ? (isMainOpen ? <ExpandLess /> : <ExpandMore />) : null}
+                  </ListItemButton>
+
+                  {item.subItems && (
+                    <Collapse in={isMainOpen} timeout="auto" unmountOnExit>
+                      <List disablePadding>
+                        {item.subItems.map((subItem, subIndex) => {
+                          const subKey = `${mainKey}-${subIndex}`;
+                          const isSubOpen = openItems[subKey];
+
+                          const toggleSub = () => {
+                            setOpenItems(prev => (prev[subKey] ? {} : { [subKey]: true }));
+                          };
+
+                          return (
+                            <div key={subKey}>
+                              <ListItemButton onClick={subItem.subItems ? toggleSub : closeMenu} sx={{ pl: 4 }}>
+                                <ListItemText>
+                                  <Link to={subItem.path || '#'} className="link" onClick={closeMenu}>
+                                    {subItem.label}
+                                  </Link>
+                                </ListItemText>
+                                {subItem.subItems ? (isSubOpen ? <ExpandLess /> : <ExpandMore />) : null}
+                              </ListItemButton>
+
+                              {subItem.subItems && (
+                                <Collapse in={isSubOpen} timeout="auto" unmountOnExit>
+                                  <List disablePadding>
+                                    {subItem.subItems.map((nested, nestedIndex) => (
+                                      <ListItemButton
+                                        key={`${subKey}-${nestedIndex}`}
+                                        component={Link}
+                                        to={nested.path || '#'}
+                                        sx={{ pl: 6 }}
+                                        onClick={closeMenu}
+                                      >
+                                        <ListItemText primary={nested.label} />
+                                      </ListItemButton>
+                                    ))}
+                                  </List>
+                                </Collapse>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </List>
+                    </Collapse>
+                  )}
                 </div>
-              )}
+              );
+            })}
+          </List>
+        </div>
+      )}
+
+
+
+
 
       <MegaMenu
         activeDropdown={activeDropdown}
         onMouseEnter={() => setActiveDropdown(activeDropdown)}
         onMouseLeave={handleMouseLeaveMegaMenu}
+        onClose={() => setActiveDropdown(null)}
         // searchQuery={searchQuery}
         // onSearchChange={setSearchQuery}
         // onSearch={handleSearch}

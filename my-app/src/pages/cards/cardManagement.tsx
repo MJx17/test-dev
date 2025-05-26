@@ -61,7 +61,7 @@ const NotiecCardManagement = () => {
 
   //Pagination
   const [page, setPage] = useState<number>(1);  
-  const [itemsPerPage] = useState<number>(10);
+  const [itemsPerPage] = useState<number>(5);
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = page * itemsPerPage;
 
@@ -364,7 +364,7 @@ const handleSortChange = (e: SelectChangeEvent<string>) => {
 
 
   return (  
-    <div className='noticecards-container'>
+    <div className='noticecards-menu'>
         
 
 

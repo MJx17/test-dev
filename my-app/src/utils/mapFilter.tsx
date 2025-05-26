@@ -104,16 +104,23 @@ const MapFilter: React.FC<MapFilterProps> = ({
 
   return (
     <div className="filter-container">
-      <div className="search-map-container">
+          <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' }, // Stack on smaller screens, row on larger
+          alignItems: 'center',
+          gap: 2, // Add spacing between elements
+          width: '100%',
+        }}
+        className="search-map-container"
+      >
+        {/* Search Input */}
         <Autocomplete
           freeSolo
           options={getFilteredOptions(search)}
-          getOptionLabel={(option: string | FilterOption) => {
-            if (typeof option === 'string') {
-              return option; // If it's a string, return it directly
-            }
-            return option.label || ''; // If it's a FilterOption, return its label
-          }}
+          getOptionLabel={(option: string | FilterOption) =>
+            typeof option === 'string' ? option : option.label || ''
+          }
           onInputChange={(_event, newInputValue) => {
             if (newInputValue.length >= 3) {
               setSearch(newInputValue);
@@ -126,31 +133,48 @@ const MapFilter: React.FC<MapFilterProps> = ({
               {...params}
               placeholder="Search..."
               variant="outlined"
-              style={{ width: '100%' }} // Set a fixed width
+              sx={{
+                flex: 1, // Take up remaining space in the row
+                minWidth: '300px',
+              }}
               InputProps={{
                 ...params.InputProps,
                 startAdornment: (
-                  <React.Fragment>
+                  <>
                     <SearchIcon className="search--map-icon" />
                     {params.InputProps.startAdornment}
-                  </React.Fragment>
+                  </>
                 ),
                 endAdornment: (
-                  <React.Fragment>
+                  <>
                     {search && (
-                      <ClearIcon className="clear-icon" onClick={handleClearSearch} />
+                      <ClearIcon
+                        className="clear-icon"
+                        onClick={handleClearSearch}
+                        style={{ cursor: 'pointer' }}
+                      />
                     )}
                     {params.InputProps.endAdornment}
-                  </React.Fragment>
+                  </>
                 ),
               }}
             />
           )}
         />
-        <Button variant="contained" onClick={toggleFilterVisibility}>
+        {/* Filter Button */}
+        <Button
+          variant="contained"
+          sx={{
+            minWidth: '100px', // Ensure button has a fixed width
+            padding: '10px 16px', // Better padding for larger screens
+          }}
+          onClick={toggleFilterVisibility}
+        >
           Filter
         </Button>
-      </div>
+      </Box>
+
+
 
       <Modal
         open={isFilterVisible}
