@@ -19,8 +19,8 @@ const app = express();
 app.use(express.json());
 
 app.use(cookieParser());
-const allowedOrigins = process.env.CORS_ORIGINS
-  ? process.env.CORS_ORIGINS.split(',').map(origin => origin.trim())
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim())
   : [];
 
 app.use(cors({
