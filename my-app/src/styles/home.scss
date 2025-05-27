@@ -207,6 +207,17 @@
 }
 
 //Notice-cards
+.noticecardswrapper {
+  padding: 20px;
+  height: auto;
+}
+
+.mySwiperNoticeCard {
+  padding: 10px;
+  @media (max-width: 7698px) {
+    padding-right: 4rem;
+  }
+}
 
 .notice-card {
   position: relative;
@@ -240,7 +251,7 @@
     background: rgba(255, 255, 255, 0.9);
     color: #344bbd;
     padding: 16px;
-    transition: transform 1s ease; // slow transform
+    transition: transform 1s ease;
     transform: translateY(0);
 
     .notice-card-title {
@@ -254,21 +265,43 @@
       max-height: 0;
       opacity: 0;
       overflow: hidden;
-      transition: max-height 0.8s ease, opacity 0.8s ease; // slow reveal
+      transition: max-height 0.8s ease, opacity 0.8s ease;
     }
   }
 
+  // Show description on hover (desktop)
   &:hover .notice-card-description {
-    max-height: 300px; // increased just in case description is long
+    max-height: 300px;
     opacity: 1;
   }
 
+  // Also support programmatic show
   &.show-description .notice-card-description {
     max-height: 300px;
     opacity: 1;
   }
 }
 
+// 👇 Touch support - show description by default
+@media (hover: none) and (pointer: coarse) {
+  .notice-card {
+    transform: none !important;
+
+    .notice-card-description {
+      opacity: 1 !important;
+      max-height: 300px !important;
+    }
+
+    &:hover {
+      transform: none !important;
+    }
+
+    &:hover .notice-card-description {
+      opacity: 1 !important;
+      max-height: 300px !important;
+    }
+  }
+}
 
 /// SCSS for Rates
 ///

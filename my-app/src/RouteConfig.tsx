@@ -21,7 +21,7 @@ import CurrencyManagement from './pages/AdminPages/CurrencyManagement';
 import CardList from './pages/cards/cardList';
 import CardManagement from './pages/cards/cardManagement'
 import Cards from './pages/cards/cards'
-import Loans from './pages/loans'
+// import Loans from './pages/loans'
 import Loans2 from './pages/loans2'
 import Loans3 from './pages/loans3'
 import Loans4 from './pages/loans4'

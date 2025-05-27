@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import InfoSection from './infosection'; // adjust path as needed
 import { sections } from '../data/dummypage';
 

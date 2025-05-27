@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+// import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import { motion } from "framer-motion";
 import ArrowNav from "../utils/icons"; // Your custom navigation arrows

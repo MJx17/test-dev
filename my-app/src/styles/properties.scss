@@ -23,6 +23,11 @@
           font-weight: 600;
           color: #050284;
         }
+        .h5-filter{
+          @media (max-width: 768px) {
+             color: #f9f9f9;
+          }
+        }
       }
 
       .filter-controls {

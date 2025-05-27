@@ -1,7 +1,7 @@
 // Global Styles (e.g., _global.scss)
 
 // Remove Google Fonts import (no longer needed)
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap');
 
 // Global styles for headings
 h2 {
@@ -76,80 +76,79 @@ ul, li {
   }
 }
 
-.footer-images {
-  background-color: #e7e7e7; /* Dark background for footer images */
+// .footer-images {
+//   background-color: #e7e7e7; /* Dark background for footer images */
 
-  display: flex;
-  justify-content: flex-start; /* Center the images horizontally */
-  gap: 10px; /* Space between images */
-  padding: 20px;
-  flex-wrap: wrap; /* Wrap images on smaller screens */
-}
+//   display: flex;
+//   justify-content: flex-start; /* Center the images horizontally */
+//   gap: 10px; /* Space between images */
+//   padding: 20px;
+//   flex-wrap: wrap; /* Wrap images on smaller screens */
+// }
 
-.footer-image {
-  width: 100px; /* Make images small */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: contain;
-  border-radius: 5px; /* Optional rounded corners */
-  padding: 0 50px;
-}
+// .footer-image {
+//   width: 100px; /* Make images small */
+//   height: auto; /* Maintain aspect ratio */
+//   object-fit: contain;
+//   border-radius: 5px; /* Optional rounded corners */
+//   padding: 0 50px;
+// }
 
-.footer-3-image {
-  width: 100px; /* Make images small */
-  height: 60px; /* Maintain aspect ratio */
-  object-fit: contain;
-  border-radius: 5px; /* Optional rounded corners */
-  padding: 0 50px;
-}
-
-
-.mini-footer {
-  background-color: #010381; /* Darker background for mini footer */
-  color: #fcfcfc; /* Lighter text color for contrast */
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 0 70px;
-
-}
-
-.mini-footer p {
-  margin: 5px 0;
-}
-
-.mini-footer p:first-child {
-  font-weight: bold;
-}
+// .footer-3-image {
+//   width: 100px; /* Make images small */
+//   height: 60px; /* Maintain aspect ratio */
+//   object-fit: contain;
+//   border-radius: 5px; /* Optional rounded corners */
+//   padding: 0 50px;
+// }
 
 
-@media (max-width: 1024px) {
-  .mini-footer{
-    flex-direction: column;
-  }
+// .mini-footer {
+//   background-color: #010381; /* Darker background for mini footer */
+//   color: #fcfcfc; /* Lighter text color for contrast */
+//   display: flex;
+//   flex-direction: row;
+//   text-align: center;
+//   justify-content: flex-start;
+//   gap: 10px;
+//   padding: 0 70px;
+
+// }
+
+// .mini-footer p {
+//   margin: 5px 0;
+// }
+
+// .mini-footer p:first-child {
+//   font-weight: bold;
+// }
+
+
+// @media (max-width: 1024px) {
+//   .mini-footer{
+//     flex-direction: column;
+//   }
   
-}
+// }
 
-@media (max-width: 768px) {
-  .footer-images {
-    justify-content: center; /* Center images on smaller screens */
-  }
+// @media (max-width: 768px) {
+//   .footer-images {
+//     justify-content: center; /* Center images on smaller screens */
+//   }
 
-  .footer-image, .footer-3-image {
-    width: 80px; /* Smaller images on smaller screens */
-    height: auto; /* Maintain aspect ratio */
-    padding: 0 8px; /* Adjust padding for better spacing */
-  }
-}
+//   .footer-image, .footer-3-image {
+//     width: 80px; /* Smaller images on smaller screens */
+//     height: auto; /* Maintain aspect ratio */
+//     padding: 0 8px; /* Adjust padding for better spacing */
+//   }
+// }
 
-@media (max-width: 480px) {
-  .footer-images {
-    padding: 10px; /* Adjust padding for smaller screens */
-  }
+// @media (max-width: 480px) {
+//   .footer-images {
+//     padding: 10px; /* Adjust padding for smaller screens */
+//   }
 
-  .footer-image, .footer-3-image {
-    width: 60px; /* Even smaller images for very small screens */
-  }
-}
-
+//   .footer-image, .footer-3-image {
+//     width: 60px; /* Even smaller images for very small screens */
+//   }
+// }

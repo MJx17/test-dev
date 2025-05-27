@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { dummyProperties } from './Properties';
 import '../styles/properties.scss';

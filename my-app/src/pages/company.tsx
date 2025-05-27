@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import '../styles/pdf.scss'
-import PDFData from'../assets/Data-Privacy-Manual-2017.pdf'
+
 
 const disclosurePolicies = [
     { id: 1, title: "Philtrust Bank_1-ACGR 2023", pdfUrl: "https://www.philtrustbank.com/sites/default/files/corporate-governance/Philtrust%20Bank_I-ACGR%202023.pdf", year: 2024, category: "Corporate Governance Report" },

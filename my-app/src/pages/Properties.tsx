@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 import {
     Select,
     MenuItem,
-    ImageList,
-    ImageListItem,
+    // ImageList,
+    // ImageListItem,
     Button,
     Typography,
     Box,
@@ -196,7 +196,7 @@ const Properties: FC = () => {
             <div className="box-properties">
                 <Box className="box-properties-wrapper">
                     <Box className="filter-heading">
-                        <Typography variant="h5" component="h1">
+                        <Typography variant="h5" component="h1" className='h5-filter'>
                             Search Property
                         </Typography>
                     </Box>
@@ -236,7 +236,7 @@ const Properties: FC = () => {
 
                     }}
                 >
-                    {paginatedProperties.map(({ id, description, imageUrls, link, area, lotArea, floorArea, price }) => (
+                    {paginatedProperties.map(({ id, description, imageUrls, area, lotArea, floorArea, price }) => (
                         <Box
                             key={id}
                             sx={{

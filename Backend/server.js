@@ -19,15 +19,24 @@ const app = express();
 app.use(express.json());
 
 app.use(cookieParser());
+const allowedOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',').map(origin => origin.trim())
+  : [];
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173', 
-    'http://10.30.1.205:5173', // Removed leading space
-    'https://test-dev-fe.onrender.com',
-    'https://test-dev-gamma.vercel.app'
-  ],
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy: This origin is not allowed'));
+    }
+  },
+  credentials: true,
 }));
+
 
 
 

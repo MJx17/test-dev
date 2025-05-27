@@ -30,7 +30,6 @@ const MegaMenu = forwardRef<HTMLDivElement, MegaMenuProps>(({
   activeDropdown,
   onMouseEnter,
   onMouseLeave,
-  onClose,
 }, ref) => {
   const activeMenu = menuData.find(item => item.label.toLowerCase() === activeDropdown?.toLowerCase());
 

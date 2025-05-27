@@ -215,16 +215,15 @@ import {
   ListItemButton,
   ListItemText,
   Collapse,
-  ListItemIcon,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { menuData } from '../data/navbar';
 import useIsMobile from '../hooks/mobile';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import '../styles/sitemap.scss';
+import { Instagram } from '@mui/icons-material';
 
 
 const SiteMap: React.FC = () => {
@@ -291,8 +290,8 @@ const renderMenu = (items: any[], parentKey = 'root') => {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                 <FacebookIcon style={{ fontSize: 32, color: '#fff' }} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <TwitterIcon style={{ fontSize: 32, color: '#fff' }} />
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <Instagram style={{ fontSize: 32, color: '#fff' }} />
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                 <LinkedInIcon style={{ fontSize: 32, color: '#fff' }} />

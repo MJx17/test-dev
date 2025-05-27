@@ -22,6 +22,8 @@ const App = () => {
       <Router>
         <Routes>
           {routes.map((route, index) => {
+            if (!route) return null; // ✅ Type narrowing
+
             let Layout = null;
 
             if (route.useLayout === 'public') {
@@ -44,6 +46,7 @@ const App = () => {
               />
             );
           })}
+
           <Route path="*" element={<NotFound />} />
         </Routes>
 

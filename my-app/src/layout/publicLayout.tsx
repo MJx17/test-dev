@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import Navbar from '../components/navbar';  // Assuming Navbar is your public navbar component
-import Navbar2 from '../components/navbar2';  // Assuming Navbar is your public navbar component
+// import Navbar2 from '../components/navbar2';  // Assuming Navbar is your public navbar component
 import '../styles/global.scss';      // Optional, for any styles you'd like to add
 import FeatureCardContainer  from "../components/FeautureCardList";
 import Footer from '../components/footer';

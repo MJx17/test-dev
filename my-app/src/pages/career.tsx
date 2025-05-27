@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, SyntheticEvent } from "react";
+import React, { useState, ChangeEvent} from "react";
 import '../styles/pdf.scss';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import Pagination from '@mui/material/Pagination'; // import MUI Pagination
@@ -53,10 +53,11 @@ const CareerPage: React.FC = () => {
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
     const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
 
-    const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
-        setCurrentPage(value);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+   const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 
 
     return (
