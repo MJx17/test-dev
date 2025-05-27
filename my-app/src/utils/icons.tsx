@@ -1,26 +1,59 @@
-// CustomArrows.tsx
-import React, { RefObject } from 'react';
-import EastIcon from '@mui/icons-material/East';
-import WestIcon from '@mui/icons-material/West';
-import '../styles/home.scss'; // Add your CSS styles here
+import React, { RefObject } from "react";
+import EastIcon from "@mui/icons-material/East";
+import WestIcon from "@mui/icons-material/West";
+import "../styles/home.scss";
 
-// Define the types for the props
-interface CustomArrowsProps {
-  prevRef: RefObject<HTMLButtonElement>;  // Ref for the previous button
-  nextRef: RefObject<HTMLButtonElement>;  // Ref for the next button
+// Full interface (with optional booleans)
+interface ArrowNavProps {
+  prevRef: RefObject<HTMLButtonElement>;
+  nextRef: RefObject<HTMLButtonElement>;
+  isBeginning?: boolean;
+  isEnd?: boolean;
 }
 
-const CustomArrows: React.FC<CustomArrowsProps> = ({ prevRef, nextRef }) => {
+// 1. Default Full Version
+export const ArrowNav: React.FC<ArrowNavProps> = ({
+  prevRef,
+  nextRef,
+  isBeginning,
+  isEnd,
+}) => {
   return (
     <>
-      <button className="custom-prev-button" ref={prevRef}>
+      <button
+        className={`custom-prev-button ${isBeginning ? "hidden" : ""}`}
+        ref={prevRef}
+      >
         <WestIcon fontSize="large" />
       </button>
-      <button className="custom-next-button" ref={nextRef}>
+      <button
+        className={`custom-next-button ${isEnd ? "hidden" : ""}`}
+        ref={nextRef}
+      >
         <EastIcon fontSize="large" />
       </button>
     </>
   );
 };
 
-export default CustomArrows;
+// 2. Simplified Version (no beginning/end logic)
+interface SimpleArrowNavProps {
+  prevRef: RefObject<HTMLButtonElement>;
+  nextRef: RefObject<HTMLButtonElement>;
+}
+
+export const SimpleArrowNav: React.FC<SimpleArrowNavProps> = ({
+  prevRef,
+  nextRef,
+}) => {
+  return (
+    <>
+      <button className="custom-prev-button-home" ref={prevRef}>
+        <WestIcon fontSize="large" />
+      </button>
+      <button className="custom-next-button-home" ref={nextRef}>
+        <EastIcon fontSize="large" />
+      </button>
+    </>
+  );
+};

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Navigation, Autoplay, Pagination } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
 import { motion } from "framer-motion";
-import ArrowNav from '../utils/icons';
+import {SimpleArrowNav} from '../utils/icons';
 import "../styles/home.scss";
 import useCarouselStore from '../store/Slide';  // Import the Zustand store and Carousel type
 import RateList from '../pages/Rates';
@@ -60,7 +60,7 @@ const Slider: React.FC = () => {
             onSlideChange={handleSlideChange}
             className="mySwiper"
           >
-            <ArrowNav prevRef={prevRef} nextRef={nextRef} />
+            <SimpleArrowNav prevRef={prevRef} nextRef={nextRef} />
 
             {carousels && carousels.length > 0 ? (
               carousels.map((carousel: Carousel, index: number) => (

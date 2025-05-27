@@ -112,31 +112,44 @@
 // };
 
 // export default MiniNavbar;
-
 import React from "react";
 import { Tooltip } from "@mui/material";
-import { AccountBalance, House, HomeRepairService } from "@mui/icons-material";
-import { Link } from "react-router-dom"; // Ensure this is correct for hash routing
+import { AccountBalance, House, HomeRepairService, Login } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import "../styles/navbar.scss";
 
+
 const navItems = [
-  { icon: AccountBalance, title: "Branch Locator", link: "/branch" }, // Updated to hash path
-  { icon: House, title: "Properties", link: "/properties" }, // Updated to hash path
-  { icon: HomeRepairService, title: "Careers", link: "/careers" }, // Updated to hash path
+  { icon: AccountBalance, title: "Branch Locator", link: "/branch" },
+  { icon: House, title: "Properties", link: "/properties" },
+  { icon: HomeRepairService, title: "Careers", link: "/careers" },
 ];
 
 const HorizontalNavbar: React.FC = () => {
   return (
     <div className="horizontal-navbar">
+      {/* Internal Routes */}
       {navItems.map((item, index) => (
         <Tooltip key={index} title={item.title} arrow>
           <Link to={item.link} className="horizontal-navbar-item">
-            {/* If not using React Router, replace Link with <a href={item.link}> */}
             <item.icon className="horizontal-navbar-icon" />
             <span className="horizontal-navbar-title">{item.title}</span>
           </Link>
         </Tooltip>
       ))}
+
+      {/* External Login */}
+      <Tooltip title="Login" arrow>
+        <a
+          href="https://your-login-url.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="horizontal-navbar-item login-navbar-item"
+        >
+          <Login className="horizontal-navbar-icon" />
+          <span className="horizontal-navbar-title">Login</span>
+        </a>
+      </Tooltip>
     </div>
   );
 };

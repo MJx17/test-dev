@@ -1,10 +1,11 @@
 import React from "react";
 import "../styles/footer.scss";
 import SiteMap from './siteMap';
+import { Padding } from "@mui/icons-material";
 
 const Footer: React.FC = () => {
   return (
-    <div>
+    <>
       <SiteMap />
       <footer className="footer-container">
 
@@ -36,7 +37,7 @@ const Footer: React.FC = () => {
           </p>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import { motion } from "framer-motion";
-import ArrowNav from "../utils/icons"; // Your custom navigation arrows
+import { SimpleArrowNav } from "../utils/icons"; // Your custom navigation arrows
 
 
 // MUI Icons
@@ -85,7 +85,7 @@ const NoticeListCard: React.FC = () => {
                         }}
                         className="mySwiperLoanCard-3"
                     >
-                        <ArrowNav prevRef={prevRef} nextRef={nextRef} />
+                        <SimpleArrowNav prevRef={prevRef} nextRef={nextRef} />
 
                         {loanSlides.map((loan, index) => (
                             <SwiperSlide key={index}>

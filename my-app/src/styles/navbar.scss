@@ -32,26 +32,15 @@
     }
   }
 
-  // .navbar-text {
-  //   margin-left: 10px;
-  //   display: flex;
-  //   flex-direction: column;
 
-  //   a {
-  //     color: #fff;
-  //     text-decoration: none;
-  //     margin: 0 5px;
-  //   }
-  //   .text-logo {
-  //     font-family: "Roboto", sans-serif;
-  //     font-weight: 700;
-  //     font-size: 1.5em;
-  //     letter-spacing: -0.5px;
-  //   }
-  // }
 
-  .navbar-links-container {
+ .navbar-links-container {
     position: relative;
+    flex-grow: 1;           /* Take available space */
+    display: flex;          /* Use flex inside */
+    justify-content: flex-end;
+    
+
 
     .navbar-links {
       list-style: none;
@@ -79,9 +68,15 @@
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+ 
     .login-links {
       display: flex;
       flex-direction: row;
+      display: none;
+      @media (max-width: 768px) {
+        display: block;
+        
+      }
     }
 
     .navbar-search-button {
@@ -158,6 +153,7 @@
   }
 }
 
+
 /* Group Menu */
 .group-menu {
   display: flex;
@@ -229,6 +225,8 @@
   }
 }
 
+
+
 /* Mobile Styles */
 @media (max-width: 768px) {
   .navbar {
@@ -283,7 +281,7 @@
   }
 
   .navbar-links-container {
-    display: none;
+    display: none !important;
     color: #050284;
   }
 
@@ -336,6 +334,8 @@
   }
 }
 
+
+
 //Feautre Cards List
 .horizontal-navbar {
   display: flex;
@@ -352,7 +352,6 @@
   display: flex;
   flex-direction: row; /* Align icon and text in a row */
   align-items: center;
-  padding: 5px;
   margin: 0 10px; /* Space between items */
   transition: background-color 0.2s ease, color 0.2s ease;
 
@@ -363,18 +362,47 @@
   }
 }
 
+
 .horizontal-navbar-icon {
-  font-size: 24px; /* Adjust size for the icon */
+  font-size: 12px; /* Adjust size for the icon */
   color: #242424; /* Darker color for the icon */
   margin-right: 8px; /* Space between icon and text */
 }
 
 .horizontal-navbar-title {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   color: #242424;
   white-space: nowrap; /* Prevent wrapping */
 }
+
+/* Specific style override for the Login item */
+.login-navbar-item {
+  background-color: #ffcc00; // Brighter amber for more contrast
+  border-radius: 20px;
+  padding: 8px 16px;
+  border: 1px solid #e0a800;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); // subtle depth
+
+  .horizontal-navbar-icon {
+    font-size: 16px;
+    color: #242424;
+  }
+
+  .horizontal-navbar-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #242424;
+  }
+
+  &:hover {
+    background-color: #e0a800;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
 @media (max-width: 940px) {
   
   .navbar{
