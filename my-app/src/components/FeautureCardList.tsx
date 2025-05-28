@@ -141,7 +141,7 @@ const HorizontalNavbar: React.FC = () => {
       {/* External Login */}
       <Tooltip title="Login" arrow>
         <a
-          href="https://your-login-url.com"
+          href="https://www.philtrustbankonline.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="horizontal-navbar-item login-navbar-item"
