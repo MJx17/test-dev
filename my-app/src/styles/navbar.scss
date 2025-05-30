@@ -88,7 +88,7 @@
       background-color: #007bff; /* Light blue background */
       color: #fff; /* White text */
       text-align: center;
-      border-radius: 5px;
+      border-radius: 8px;
       text-decoration: none;
       font-size: 16px;
       border: 2px solid #007bff; /* Blue border */
@@ -342,7 +342,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end; /* Align items to the right */
-  padding: 0.1em 5.5rem 0.1em 5.5rem;
+  padding: 0.5em 5.5rem 0.5em 5.5rem;
   background-color: #febc11; /* Light background */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   
@@ -359,6 +359,9 @@
 
   &:hover {
     background-color: #e0a800; /* Slightly darker amber */
+  }
+  svg{
+    font-size: 1rem;
   }
 }
 
@@ -379,7 +382,7 @@
 /* Specific style override for the Login item */
 .login-navbar-item {
   background-color: #ffcc00; // Brighter amber for more contrast
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 5px 16px;
   border: 1px solid #e0a800;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); // subtle depth

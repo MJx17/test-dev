@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import '../styles/pdf.scss'
 
 
@@ -8,6 +8,12 @@ const disclosurePolicies = [
     { id: 3, title: "Charter of the Relaxed Party Transactions Commitee", pdfUrl: "https://www.philtrustbank.com/sites/default/files/corporate-governance/CHARTER%20OF%20THE%20RELATED%20PARTY%20TRANSACTIONS%20COMMITTEE.pdf", year: 2024, category: "Board Committees" },
     { id: 4, title: "Charter of the Executive Committee", pdfUrl: "https://www.philtrustbank.com/sites/default/files/corporate-governance/CHARTER%20OF%20THE%20EXECUTIVE%20COMMITTEE.pdf", year: 2021, category: "Board Committees" },
     { id: 5, title: "Charter of the Audit Committee", pdfUrl: "https://www.philtrustbank.com/sites/default/files/corporate-governance/CHARTER%20OF%20THE%20AUDIT%20COMMITTEE.pdf", year: 2023, category: "Board Committees" },
+    { id: 6, title: "Policy on Inside Trading", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Policy%20on%20Insider%20Trading-2017.pdf", year: 2022, category: "Policies" },
+    { id: 7, title: "Whistle Blowing Policy", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Whistle%20Blowing%20Policy-2017.pdf", year: 2024, category: "Policies" },
+    { id: 8, title: "Prevention of Conflict of Interest", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Prevention%20of%20Conflict%20of%20Interest-2017.pdf", year: 2021, category: "Policies" },
+    { id: 9, title: "Data Privacy Manual", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Data%20Privacy%20Manual-2017.pdf", year: 2023, category: "Manuals" },
+    { id: 10, title: "Financial Consumer Protection Manual", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Financial%20Consumer%20Protection%20Manual-2017.pdf", year: 2023, category: "Manuals" },
+
 ];
 
 // PDF Icon component (same as before)
@@ -26,7 +32,7 @@ export default function DisclosureList() {
     const [yearFilter, setYearFilter] = useState("All");
 
     const categories = ["All", ...new Set(disclosurePolicies.map((item) => item.category))];
- const years = ["All", ...Array.from(new Set(disclosurePolicies.map((item) => item.year))).sort((a, b) => b - a)];
+    const years = ["All", ...Array.from(new Set(disclosurePolicies.map((item) => item.year))).sort((a, b) => b - a)];
 
 
 
@@ -91,7 +97,7 @@ export default function DisclosureList() {
                             {items.map(({ id, title, pdfUrl, year }) => (
                                 <li key={id} className="disclosure-item">
                                     <a
-                                      href={pdfUrl} // if you want to include the pdfUrl variable in a hash route string
+                                        href={pdfUrl} // if you want to include the pdfUrl variable in a hash route string
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="disclosure-link"

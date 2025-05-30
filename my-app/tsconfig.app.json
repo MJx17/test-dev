@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "dupli/test/SignUp.tsx", "dupli/test/test.tsx", "dupli/test/rpn.tsx", "dupli/test/Slides.tsx"]
+  "include": ["src", "dupli/test/SignUp.tsx", "dupli/test/test.tsx", "dupli/test/rpn.tsx", "dupli/test/Slides.tsx", "src/pages/disclosures.tsx"]
 }

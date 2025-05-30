@@ -104,16 +104,22 @@ export const menuData = [
         path: "/corporate-governance",
 
       },
-      {
-        label: "Company Policies",
-        path: "/company-policies",
-
-      },
-      {
+       {
         label: "Company Disclosures",
         path: "/company-disclosures",
 
       },
+      {
+        label: "Press Material/News",
+        path: "/press-material",
+
+      },
+        {
+        label: "Investor Relations",
+        path: "/investor-relations",
+
+      },
+     
       
      ]
   },

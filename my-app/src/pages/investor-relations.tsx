@@ -2,12 +2,17 @@ import { useState } from "react";
 import '../styles/pdf.scss'
 
 
-const disclosurePolicies = [
-    { id: 1, title: "Data Privacy Manual", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Data%20Privacy%20Manual-2017.pdf", year: 2023, category: "Manuals" },
-    { id: 2, title: "Policy on Inside Trading", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Policy%20on%20Insider%20Trading-2017.pdf", year: 2022, category: "Policies" },
-    { id: 3, title: "Whistle Blowing Policy", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Whistle%20Blowing%20Policy-2017.pdf", year: 2024, category: "Policies" },
-    { id: 4, title: "Prevention of Conflict of Interest", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Prevention%20of%20Conflict%20of%20Interest-2017.pdf", year: 2021, category: "Policies" },
-    { id: 5, title: "Financial Consumer Protection Manual", pdfUrl: "https://www.philtrustbank.com/sites/default/files/company-policies/Financial%20Consumer%20Protection%20Manual-2017.pdf", year: 2023, category: "Manuals" },
+const investorRelations = [
+    { id: 11, title: "2024 Annual Report", pdfUrl: "", year: 2024, category: "Annual Report" },
+    { id: 12, title: "Q1 2025 Financial Highlights", pdfUrl: "", year: 2025, category: "Quarterly Financials" },
+    { id: 13, title: "Investor Presentation - May 2025", pdfUrl: "", year: 2025, category: "Investor Presentation" },
+    { id: 14, title: "Shareholders' Meeting Summary 2024", pdfUrl: "", year: 2024, category: "Meeting Summary" },
+    { id: 15, title: "2023 ESG Report", pdfUrl: "", year: 2023, category: "Sustainability Report" },
+    { id: 16, title: "Capital Markets Day Presentation", pdfUrl: "", year: 2024, category: "Investor Event" },
+    { id: 17, title: "Dividend Declaration Notice", pdfUrl: "", year: 2025, category: "Dividends" },
+    { id: 18, title: "2025 Strategic Outlook", pdfUrl: "", year: 2025, category: "Strategic Update" },
+    { id: 19, title: "Investor Q&A Summary – Q2 2024", pdfUrl: "", year: 2024, category: "Investor Communication" },
+    { id: 20, title: "Risk Management Overview 2024", pdfUrl: "", year: 2024, category: "Risk Disclosure" },
 ];
 
 // PDF Icon component (same as before)
@@ -25,12 +30,12 @@ export default function DisclosureList() {
     const [categoryFilter, setCategoryFilter] = useState("All");
     const [yearFilter, setYearFilter] = useState("All");
 
-    const categories = ["All", ...new Set(disclosurePolicies.map((item) => item.category))];
- const years = ["All", ...Array.from(new Set(disclosurePolicies.map((item) => item.year))).sort((a, b) => b - a)];
+    const categories = ["All", ...new Set(investorRelations.map((item) => item.category))];
+ const years = ["All", ...Array.from(new Set(investorRelations.map((item) => item.year))).sort((a, b) => b - a)];
 
 
 
-    const filteredPolicies = disclosurePolicies.filter(({ title, year, category }) => {
+    const filteredPolicies = investorRelations.filter(({ title, year, category }) => {
         const search = filter.toLowerCase();
         const matchesText = title.toLowerCase().includes(search) || year.toString().includes(search);
         const matchesCategory = categoryFilter === "All" || category === categoryFilter;
@@ -41,11 +46,11 @@ export default function DisclosureList() {
     const grouped = filteredPolicies.reduce((acc, item) => {
         (acc[item.category] = acc[item.category] || []).push(item);
         return acc;
-    }, {} as Record<string, typeof disclosurePolicies>);
+    }, {} as Record<string, typeof investorRelations>);
 
     return (
         <div className="disclosure-container">
-            <h1 className="disclosure-header">Company Policies</h1>
+            <h1 className="disclosure-header"> Investor Relations </h1>
 
             <div className="disclosure-filters">
                 <input

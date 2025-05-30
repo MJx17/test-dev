@@ -29,44 +29,49 @@ import SiteMap from './components/siteMap';
 import AtmCard from './components/atm';
 import Properties from './pages/Properties';
 import PropertiesDetails from './pages/property-details'
-import CompanyGOV from './pages/company'
+
 import InfoSectionPage from './components/infoPage';
 import CareerPage from './pages/career';
-import Company1 from './pages/company2'
-import Company2 from './pages/company3'
+
+import Governance from './pages/governance'
+import Disclosures from './pages/disclosures'
+import PressMaterial from './pages/press-material'
+import InvestorRelations from './pages/investor-relations'
 
 export const routes = [
   // Public route, no navbar needed
   { path: '/login', element: <LoginForm /> },    // Public route, no navbar needed
-  
+
   // Public routes, will use public layout with navbar
-  { path: '/', element: <Home />, useLayout: 'public' }, 
+  { path: '/', element: <Home />, useLayout: 'public' },
 
   { path: '/home', element: <Home />, useLayout: 'public' },
-  { path: '/branch', element: <Branch/>, useLayout: 'public' },
-    { path: '/branch2', element: <Branch2/>, useLayout: 'public' },
-  { path: '/loans', element: <Loans4/>, useLayout: 'public' },
-  { path: '/loans-2', element: <Loans2/>, useLayout: 'public' },
-  { path: '/loans-3', element: <Loans3/>, useLayout: 'public' },
-    { path: '/loans-4', element: <Loans4/>, useLayout: 'public' },
-  { path: '/sitemap', element: <SiteMap/>, useLayout: 'public' },
-  { path: '/atm', element: <AtmCard/>, useLayout: 'public' },
-  { path: '/properties', element: <Properties/>, useLayout: 'public' },
-   { path: '/properties-details/:id', element: <PropertiesDetails />, useLayout: 'public' },
-,
+  { path: '/branch', element: <Branch />, useLayout: 'public' },
+  { path: '/branch2', element: <Branch2 />, useLayout: 'public' },
+  { path: '/loans', element: <Loans4 />, useLayout: 'public' },
+  { path: '/loans-2', element: <Loans2 />, useLayout: 'public' },
+  { path: '/loans-3', element: <Loans3 />, useLayout: 'public' },
+  { path: '/loans-4', element: <Loans4 />, useLayout: 'public' },
+  { path: '/sitemap', element: <SiteMap />, useLayout: 'public' },
+  { path: '/atm', element: <AtmCard />, useLayout: 'public' },
+  { path: '/properties', element: <Properties />, useLayout: 'public' },
+  { path: '/properties-details/:id', element: <PropertiesDetails />, useLayout: 'public' },
+  ,
 
-  { path: '/corporate-governance', element: <CompanyGOV/>, useLayout: 'public' },
-    { path: '/company-policies', element: <Company1/>, useLayout: 'public' },
-      { path: '/company-disclosures', element: <Company2/>, useLayout: 'public' },
+  { path: '/corporate-governance', element: <Governance />, useLayout: 'public' },
+  { path: '/company-disclosures', element: <Disclosures/>, useLayout: 'public' },
+  { path: '/press-material', element: <PressMaterial />, useLayout: 'public' },
+  { path: '/investor-relations', element: <InvestorRelations />, useLayout: 'public' },
 
-  { path: '/careers', element: <CareerPage/>, useLayout: 'public' },
+
+  { path: '/careers', element: <CareerPage />, useLayout: 'public' },
   {
     path: '/:sectionPath',
     element: <InfoSectionPage />,  // your component handling hash
     useLayout: 'public',
   },
 
-  
+
   // Protected routes, will use auth layout with navbar + sidebar
   {
     path: '/cardlist',
@@ -90,43 +95,43 @@ export const routes = [
   },
   {
     path: '/slidelist',
-    element: <ProtectedRoute element={<SlideList/>} requiredRole={['superadmin', 'admin']} />,
+    element: <ProtectedRoute element={<SlideList />} requiredRole={['superadmin', 'admin']} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
   {
     path: '/resource-list',
-    element: <ProtectedRoute element={<ResourceList/>} requiredRole={['superadmin', ]} />,
+    element: <ProtectedRoute element={<ResourceList />} requiredRole={['superadmin',]} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
   {
     path: '/permissions',
-    element: <ProtectedRoute element={<Permissions/>} requiredRole={['superadmin', ]} />,
+    element: <ProtectedRoute element={<Permissions />} requiredRole={['superadmin',]} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
   {
     path: '/currency',
-    element: <ProtectedRoute element={<CurrencyList/>} requiredRole={['superadmin', ]} />,
+    element: <ProtectedRoute element={<CurrencyList />} requiredRole={['superadmin',]} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
   {
     path: '/currency-management',
-    element: <ProtectedRoute element={<CurrencyManagement/>} requiredRole={['superadmin', ]} />,
+    element: <ProtectedRoute element={<CurrencyManagement />} requiredRole={['superadmin',]} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
   {
     path: '/currency-list',
-    element: <ProtectedRoute element={<CurrencyList/>} requiredRole={['superadmin', ]} />,
+    element: <ProtectedRoute element={<CurrencyList />} requiredRole={['superadmin',]} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
   {
     path: '/role-permission-management',
-    element: <ProtectedRoute element={<RolePermissionManager/>} requiredRole={['superadmin', ]} />,
+    element: <ProtectedRoute element={<RolePermissionManager />} requiredRole={['superadmin',]} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
- 
+
   {
     path: '/dashboard',
-    element: <ProtectedRoute element={<Dashboard />} requiredRole={['superadmin' , 'admin']} />,
+    element: <ProtectedRoute element={<Dashboard />} requiredRole={['superadmin', 'admin']} />,
     useLayout: 'auth', // Protected route with navbar + sidebar
   },
   {
